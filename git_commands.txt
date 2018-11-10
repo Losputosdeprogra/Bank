@@ -70,3 +70,7 @@ git pull origin master
 
 
 modificar
+
+
+
+alias graph="git log --all --decorate --oneline --graph"
