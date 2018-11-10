@@ -19,7 +19,12 @@ class CajeroModelo  extends UsuarioModelo{
         $moneda     = $cuenta->getMoneda();
         $id_cliente = $cuenta->getId_cliente();
         
-        $sql = "INSERT INTO cuentas(monto, tipo, moneda, id_cliente) VALUES ($monto,'$tipo','$moneda',$id_cliente)";
+        $mon;
+        if($moneda=="Dolares"){
+            $mon=1;
+        }else $mon=0;
+        
+        $sql = "INSERT INTO cuentas(monto, tipo, moneda, id_cliente) VALUES ($monto,'$tipo','$mon',$id_cliente)";
         return ConectarBD::send("bd_finanzas", $sql);
     }
     

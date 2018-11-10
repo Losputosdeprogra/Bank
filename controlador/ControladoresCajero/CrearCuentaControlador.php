@@ -40,7 +40,11 @@ function MostrarCunetas($cuentas){
         echo "<td> <center>".$fila[0]."</center></td>"; 
         echo "<td> <center>".$fila[1]."</td>";
         echo "<td> <center>".$fila[2]."</td>";
-        echo "<td> <center>".$fila[3]."</td>";
+        if(  $fila[3]==0){
+        echo "<td> <center>"."Bolivianos"."</td>";
+        } else {
+        echo "<td> <center>"."Dolares"."</td>";
+        }
         echo "</tr>";
     }
     echo " </table>";
