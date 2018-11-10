@@ -80,7 +80,7 @@ modificar
 alias graph="git log --all --decorate --oneline --graph"
 
 
-
+////probando netbeans git
 
 
 
