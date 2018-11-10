@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+       <meta charset="UTF-8">
+  <title>Mi bankito</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"  crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"  crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<div class="row">
+  <div class="col-md-4"></div>
+<!-- INICIA LA COLUMNA -->
+  <div class="col-md-4">
+    <br><br><br>
+    <center><h1>Bienvenido a la interfaz electronica del banco</h1></center>
+    <br><br>
+    
+    <form method="POST" action="controlador/PantallaPrincipalControlador.php" >
+        
+        <fieldset>
+            <legend>¿Qué tipo de usuario eres?</legend>
+            <center>
+              <input type="submit" value="Cliente" class="btn btn-success" name="btn_cliente">
+              <input type="submit" value="Cajero" class="btn btn-danger" name="btn_cajero">
+              <input type="submit" value="Administrador" class="btn btn-primary" name="btn_administrador">
+            </center>
+        </fieldset>
+    </form>
+  </div>
+<!-- TERMINA LA COLUMNA -->
+  <div class="col-md-4"></div>
+</div>
+</body>
+</html>

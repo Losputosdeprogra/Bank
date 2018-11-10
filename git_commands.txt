@@ -1,0 +1,72 @@
+https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow
+
+git cd ir a directorio
+///inicializar un archivo como git
+git init
+
+///configurar la carpeta para git tu usuario///
+git config --global user.name "username"
+git config --global user.email user@gmail.com
+//////////////
+
+////para copiar el repositorio de github a la carpeta
+git clone (URL)
+
+///para obtener la ultima version del proyecto
+git pull
+
+.//// anhadir archivos
+git add (archivo) //solo los alista para subirlos pero falta el commit
+git status //muestra el estado de los archivos a subir
+git commit -m "mensage del commit" (archivo)
+git push -u origin master
+
+//cambios
+git commit -m "mensage del commit" (archivo)
+git push -u origin master
+
+
+//para ignorar algun archivo o archivo
+//modificar gitignore anhadiendo los archivos a ignorar
+
+///Para crear a 'branch'
+git branch (nombre)
+
+///change of branch
+git checkout (nameofthebranch)
+
+///merge branches
+git merge 
+
+///reset
+git reset --hard origin/Branch_name
+
+///branches
+git checkout -b name  /create a branch
+git checkout branch_name //cambia de branch
+git push -u origin branch_name
+git remote -v
+git branch //branch existentes
+
+
+//merging obteniendo master y branch
+git checkout master
+git pull
+git pull origin branch_name
+git push
+
+///////branches
+git checkout -b name //crea 
+git checkout branch_name //cambias de branch
+git push origin branch_name
+git remote -v 
+git branch //branches existentes
+
+
+////copiar repositorio sin folder
+git init
+git remote add origin git@github.com:me/name.git
+git pull origin master
+
+
+modificar
