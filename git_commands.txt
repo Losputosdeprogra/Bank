@@ -55,6 +55,10 @@ git pull
 git pull origin branch_name
 git push
 
+//OR while on master
+git merge branch
+
+
 ///////branches
 git checkout -b name //crea 
 git checkout branch_name //cambias de branch
@@ -70,3 +74,19 @@ git pull origin master
 
 
 modificar
+
+
+
+
+
+
+
+
+
+////////git stash
+git stash
+git stash list
+git stash apply  //most recent
+git stash pop
+git stash stash@{x}
+git stash save "oracion"
