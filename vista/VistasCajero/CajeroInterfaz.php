@@ -26,26 +26,29 @@
                 <center><h1>Interfaz de cajero</h1></center>
                 
                 <?php 
-                    print "<h2><br><br><br><p>Bienvenido $_SESSION[nombre]</h2><br>";
+                    print "<h2><p>Bienvenido $_SESSION[nombre]</h2><br>";
                 ?>
 
                 <form method="POST" action="../../controlador/ControladoresCajero/CajeroInterfazControlador.php" >
 
                     <fieldset>
-                        <legend>¿Qué deceas hacer?</legend>
+                        <legend>Registra los datos del cliente</legend>
                         <center>
+                            
                             <div class="form-group">
-                            <label for="nombre_cliente" style="font-family: monospace ; font-size: medium">Nombre del Cliente: </label><br>
-                            <input type="text" name="nombre_cliente" class="form-control"><br><br> 
+                                <label for="nombre_cliente" style="font-family: monospace ; font-size: medium">Nombre del Cliente: </label><br>
+                                <input type="text" name="nombre_cliente" class="form-control"> 
                             </div>
                             <div class="form-group">
-                            <label for="nit_ci" style="font-family: monospace">C.I. / NIT: </label><br>
-                            <input type="number" name="nit_ci" class="form-control"><br><br>
+                                <label for="nit_ci" style="font-family: monospace">C.I. / NIT: </label><br>
+                                <input type="number" name="nit_ci" class="form-control"><br><br>
                             </div>
+                            
                             <input type="submit" value="Realizar extracto" class="btn btn-primary" name="btn_Realizar_extracto"></br></br>
                             <input type="submit" value="Realizar transaccion" class="btn btn-success" name="btn_Realizar_transaccion"></br></br>
                             <input type="submit" value="Crear cuenta nueva" class="btn btn-danger" name="btn_Crear_cuenta"></br></br>
                             <input type="submit" value="Registrar nuevo cliente" class="btn btn-info" name="btn_Registrar_cliente">
+                        
                         </center>
                     </fieldset>
                 </form>
