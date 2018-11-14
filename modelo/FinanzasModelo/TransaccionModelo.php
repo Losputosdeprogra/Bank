@@ -14,23 +14,24 @@ class TransaccionModelo {
     private $id_sucursal;   //int
     
     ////////SETS AND GETS
-    public function __construct($x=""){
-            $this->id_trans=$x;
-            $this->hora=$x;
-            $this->fecha=$x;
-            $this->tipo=$x;
-            $this->cuenta_origen=$x;
-            $this->cuenta_destino=$x;
-            $this->monto=$x;
-            $this->id_caja=$x;
-            $this->id_cajero=$x;
-            $this->id_sucursal=$x;
+    /////1  Write////0 Read
+    public function __construct(){
+            $this->id_trans=0;
+            $this->hora="";
+            $this->fecha="";
+            $this->tipo="";
+            $this->cuenta_origen=0;
+            $this->cuenta_destino=0;
+            $this->monto=0;
+            $this->id_caja=0;
+            $this->id_cajero=0;
+            $this->id_sucursal=0;
     }
             
     public function __destruct(){}
     
-    public function id_trans($x,$bool){
-        if( $bool==0 ){
+    public function id_trans($x=""){
+        if( $x!="" ){
             $this->id_trans=$x;
             
         }else {
@@ -38,8 +39,8 @@ class TransaccionModelo {
         }   
     }
     
-    public function hora($x,$bool){
-        if( $bool==0 ){
+    public function hora($x=""){
+        if( $x!="" ){
             $this->hora=$x;
             
         }else {
@@ -47,8 +48,8 @@ class TransaccionModelo {
         }   
     }
     
-    public function fecha($x,$bool){
-        if( $bool==0 ){
+    public function fecha($x=""){
+        if( $x!="" ){
             $this->fecha=$x;
             
         }else {
@@ -56,16 +57,16 @@ class TransaccionModelo {
         }   
     }
     
-    public function tipo($x,$bool){
-        if( $bool==0 ){
+    public function tipo($x=""){
+        if( $x!="" ){
             $this->tipo=$x;
             
         }else {
             return $this->tipo;
         }   
     }
-    public function cuenta_origen($x,$bool){
-        if( $bool==0 ){
+    public function cuenta_origen($x=""){
+        if( $x!="" ){
             $this->cuenta_origen=$x;
             
         }else {
@@ -73,40 +74,40 @@ class TransaccionModelo {
         }   
     }
     
-    public function cuenta_destino($x,$bool){
-        if( $bool==0 ){
+    public function cuenta_destino($x=""){
+        if( $x!="" ){
             $this->cuenta_destino=$x;
             
         }else {
             return $this->cuenta_destino;
         }   
     }
-    public function monto($x,$bool){
-        if( $bool==0 ){
+    public function monto($x=""){
+        if( $x!="" ){
             $this->monto=$x;
             
         }else {
             return $this->monto;
         }   
     }
-    public function id_caja($x,$bool){
-        if( $bool==0 ){
+    public function id_caja($x=""){
+        if( $x!="" ){
             $this->id_caja=$x;
             
         }else {
             return $this->id_caja;
         }   
     }
-    public function id_cajero($x,$bool){
-        if( $bool==0 ){
+    public function id_cajero($x=""){
+        if( $x!="" ){
             $this->id_cajero=$x;
             
         }else {
             return $this->id_cajero;
         }   
     }
-    public function id_sucursal($x,$bool){
-        if( $bool==0 ){
+    public function id_sucursal($x=""){
+        if( $x!="" ){
             $this->id_sucursal=$x;
             
         }else {
