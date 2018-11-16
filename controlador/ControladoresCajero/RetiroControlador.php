@@ -3,58 +3,61 @@
 require_once __DIR__ . '/../../modelo/FinanzasModelo/TransaccionModelo.php';
 require_once __DIR__ . '/../../modelo/FinanzasModelo/CuentaModelo.php';
 require_once __DIR__ . '/../../modelo/UsuariosModelo/CajeroModelo.php';
+/////////DEFINE LA ZONA HORARIA
 date_default_timezone_set("America/La_Paz");
+
+////////////////
 session_start();
 $cajero=$_SESSION['Cajero'];
 
-ECHO "FRONT VARIABLES";
-echo "<br>";
-echo "IDCLiente   ";
-echo $cliente=$_SESSION['id_cliente'];
-echo "<br>";
-echo "monto  ";
-echo $monto=$_POST['monto'];
-echo "<br>";
-echo "Tipo  ";
-echo $tipo="retiro";
-echo "<br>";
-echo "moneda  ";
-echo $moneda=$_POST['moneda'];
-echo "<br>";
-echo "cuentas  ";
-echo $cuenta=$_POST['cuentas'];
+///////////NO CREO NECESARIO CREAR EL OBTEJO TRANSACCION EN ESTA PAGINA
+////////////////VARIABLES NECESARIAS PARA CONSTRUIR UNA TRANSACCION (ESTABA PROBANDO POR SEPARADO)
 
-echo "<br>";
+ $cliente=$_SESSION['id_cliente'];          ////ID DEL CLIENTE
+ $monto=$_POST['monto'];                    ///MONTO
+ $tipo="retiro";                            ///TIPO DE TRANSACCION
+ $moneda=$_POST['moneda'];                  ///TIPO DE MONEDA
+ $cuenta=$_POST['cuentas'];                 ////CUENTA DEL CLIENTE
+ $fecha=date("Y-m-d");                      ///FECHA ACTUAL
+$hora=date("H:i:s");                        ///HORA ACTUAL
+ $idcajero=$cajero->getIdCliente();         ///ID DEL CAJERO
+ 
+ 
+ ////////////SQL/////////////////////
+$tabla= $cajero->Tabla();                   ////TABLA PARA LA BASE DE DATOS
 
-echo "BACK VARIABLES";
-echo "<br>";
-echo "FECHA  ";
-echo $fecha=date("Y-m-d");
-echo "<br>";
-echo "HORA  ";
-echo$hora=date("H:i:s");
-echo "<br>";
-echo "IDCAJERO  ";
-echo $idcajero=$cajero->getIdCliente();
-$tabla= $cajero->Tabla();
-echo "<br>";
 $sql = "SELECT id_caja FROM $tabla WHERE id_cajero='$idcajero';";
 $row= ConectarBD::send("bd_usuario",$sql);
+/////////////////////////////////////
 
-$idcaja=$row->fetch_row()[0];
+$idcaja=$row->fetch_row()[0];               ////ID DE LA CAJA 
 
-echo "IDCAJA  ";
-echo $idcaja;
-echo "<br>";
+//////////////////////////////////////////////////////////////////////////
+////////////////
+//
+//IDEA, DUDA CREAR UN METODO PARA EL RETIRO AL CAJEROMODELO.PHP O CONTINUAR ASI NOMAS (CREO Q ESTO ES DE FORMA ESTRUCTURAL)
+//
+/////////////////////////////////////////////////RESOLVER ESTE ASUNTO QUE NO SIRVE CON EL CONECTARBD DE DIEGO
+/*
+$sql="INSERT INTO `transacciones`(`id_trans`, `fecha`, `hora`, `tipo`, `cuenta_origen`, `cuenta_destino`, `monto`, `id_caja`, `id_cajero`, `id_sucursal`) VALUES (?,'$fecha','$hora', $tipo,'$cuenta','----','$monto','$idcaja','$idcajero','0')";
+ConectarBD::send("bd_finanzas",$sql);
 
+    ////////////////////ASI ES COMO SE DEBERIA SEGUIR///////////
+ * //////////////////IDEA AUMENTAR EL METODO "CLASICO" DEL PROFESOR//////////////////
 
+            $sql = "INSERT INTO cliente(nombre, nit, telefono, email, edad) VALUES(?,?,?,?,?);";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bind_param('ssssi', $this->nombre, $this->nit, $this->telefono, $this->email, $this->edad);
 
+            
+            */
+//////////////////////////////////
 /*Back
  * Fecha+++
  * Hora +++
  * idcaja +++
  * idcajero ++++
- * 
+ * idsucursal +++
  * 
 echo "Today is " . date("Y-m-d") . "<br>";
  * 
