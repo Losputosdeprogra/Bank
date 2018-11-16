@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/../FinanzasModelo/TransaccionModelo.php';
 require_once __DIR__ . '/UsuarioModelo.php';
 
 class CajeroModelo  extends UsuarioModelo{
@@ -27,6 +28,41 @@ class CajeroModelo  extends UsuarioModelo{
     public function RealizarExtracto($nombreDelCliente) {
         parent::Extracto($nombreDelCliente);
     }
+    
+    public function RealizarTransaccion($transaccion){
+        $conexion=ConectarBD::conectar();
+        
+        $sql = "INSERT INTO `transacciones`( `fecha`, `hora`, `tipo`, `cuenta_origen`, `cuenta_destino`, `monto`, `id_caja`, `id_cajero`, `id_sucursal`) VALUES(?,?,?,?,?,?,?,?,?);";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bind_param('sssiiiiii', $transaccion->fecha(), $transaccion->hora(),$transaccion->tipo(), $transaccion->cuenta_origen(),$transaccion->cuenta_destino() ,$transaccion->monto(),$transaccion->id_caja(),$transaccion->id_cajero(),$transaccion->id_sucursal());
+            if ($stmt->execute()) {
+                $conexion->close();
+                return(true);
+            } else {
+                $conexion->close();
+                return(false);
+            } 
+        
+        
+    }
+
+    public function VerificarTransaccion($transaccion){
+        if($transaccion->monto()!=0){
+            
+            /////Retiro
+            if($transaccion->cuenta_destino()==0 and $transaccion->cuenta_origen()!=0){
+                
+                
+            }
+            
+            
+        }else return false;
+        
+        
+    }
+
+
+    
     public function CrearCuenta($cuenta) {
         $monto      = $cuenta->getMonto();
         $tipo       = $cuenta->getTipo();

@@ -32,11 +32,25 @@ $row= ConectarBD::send("bd_usuario",$sql);
 
 $idcaja=$row->fetch_row()[0];               ////ID DE LA CAJA 
 
-//////////////////////////////////////////////////////////////////////////
-////////////////
-//
-//IDEA, DUDA CREAR UN METODO PARA EL RETIRO AL CAJEROMODELO.PHP O CONTINUAR ASI NOMAS (CREO Q ESTO ES DE FORMA ESTRUCTURAL)
-//
+///////////CONSTRUCCION DEL OBJETO TRANSACCION///////////
+$transaccion=new TransaccionModelo;
+
+//$transaccion->cuenta_destino();
+$transaccion->cuenta_origen($cuenta);
+$transaccion->fecha($fecha);
+$transaccion->hora($hora);
+$transaccion->id_caja($idcaja);
+$transaccion->id_cajero($idcajero);
+//$transaccion->id_sucursal();
+$transaccion->monto($monto);
+//////////////////////////////////////////////////////////
+
+
+
+
+
+
+
 /////////////////////////////////////////////////RESOLVER ESTE ASUNTO QUE NO SIRVE CON EL CONECTARBD DE DIEGO
 /*
 $sql="INSERT INTO `transacciones`(`id_trans`, `fecha`, `hora`, `tipo`, `cuenta_origen`, `cuenta_destino`, `monto`, `id_caja`, `id_cajero`, `id_sucursal`) VALUES (?,'$fecha','$hora', $tipo,'$cuenta','----','$monto','$idcaja','$idcajero','0')";

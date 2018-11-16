@@ -14,7 +14,6 @@ class TransaccionModelo {
     private $id_sucursal;   //int
     
     ////////SETS AND GETS
-    /////1  Write////0 Read
     public function __construct(){
             $this->id_trans=0;
             $this->hora="";
