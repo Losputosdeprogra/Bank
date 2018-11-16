@@ -41,9 +41,10 @@
 
             <form method="POST" action="../../controlador/ControladoresCajero/RetiroControlador.php" >
 
-                
+                <strong>Numero de Cuenta:   
                 
                 <select name="cuentas">
+                    
                     <?php
                     echo $ListaDeCuentas;
                     ?>
@@ -55,12 +56,13 @@
                     <input type="number" name="monto" class="form-control" id="monto">
                 </div> 
                 <div class="form-group">
-                    <input type="radio" name="mon" value="Dolares"> Dolares  
-                    <input type="radio" name="mon" value="Bolivianos"> Bolivianos <br>
+                    <input type="radio" name="moneda" value="Dolares"> Dolares  
+                    <input type="radio" name="moneda" value="Bolivianos"> Bolivianos <br>
                     
                 </div>
+                    <center>
                 <input type="submit" value="RealizarRetiro" class="btn btn-primary" name="btn_RealizarRetiro">
-                        
+                    </center>
                 
             </form>
             

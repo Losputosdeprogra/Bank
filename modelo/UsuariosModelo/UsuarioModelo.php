@@ -50,11 +50,13 @@ class UsuarioModelo {
     }
 
     public function verificar($TablaCorrespondiente) {
-        $sql = "SELECT nombre,contrasena FROM $TablaCorrespondiente;";
+        $sql = "SELECT nombre,contrasena,id_cajero FROM $TablaCorrespondiente;";
         $rows= ConectarBD::send($this->BD,$sql);
         
         while ( $fila = $rows->fetch_row()){
             if ($fila[0] == $this->nombre && $fila[1] == $this->contrasena){
+                
+                $this->setIdCliente($fila[2]);
                 return TRUE;
             }
         }

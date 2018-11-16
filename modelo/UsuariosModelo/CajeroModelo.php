@@ -5,6 +5,20 @@ require_once __DIR__ . '/UsuarioModelo.php';
 class CajeroModelo  extends UsuarioModelo{
    
     private $TablaCorrespondeinte = "cajeros";
+    private $id_caja;
+    
+    public function idcaja($x=""){
+        if( $x!="" ){
+            $this->idcaja=$x;
+            
+        }else {
+            return $this->id_caja;
+        } 
+        
+    }
+    public function Tabla (){
+       return "cajeros";
+    }    
     
     public function verificarUsuario() {                         // Esta funcion revisa si el usuario existe en la tabla
         return parent::verificar($this->TablaCorrespondeinte); //y sabe su contraseña.
