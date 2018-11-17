@@ -71,10 +71,66 @@ class CajeroModelo  extends UsuarioModelo{
                 return(false);
             } 
      }
-
+     //////////CUANTOS PARAMETROS ?
+     ///////////IDEA, DE "1PARAM" A "2PARAM"
+     ////////USAR LA CONVERSION EN ESTA MISMA FUNCION
+     ////Usar conversion de Compra o Venta para la Conversion
+     public function VerificarMoneda($de,$a,$monto){
+         ////Dolares a Bolivianos
+         if($de==1 and $a==0){
+            return $this->Conversion($monto, $a);
+         }
+         ////Bolivianos a Dolares
+         if($de==0 and $a==1){
+            return $this->Conversion($monto, $a);
+             
+         }
+         if($de==$a){
+             return $monto;
+         }
+         
+     }
+     
+     
+     
+     
+     ///////////HACER DOS TIPOS DE CONVERSIONES?
+     /////////o una con dos parametros
+     /////////El parametro de moneda indica que se tiene q convertir a ese tipo de moneda
+     ///// Se sobre entiende que si uso esta funcion entonces el monto es distinta a lo q se tiene q convertir
+     ////////Ejemplo los parametros monto esta en DOLARES y MONEDA en BOLIVIANOS
+     public function Conversion($monto,$moneda){
+         ////////Bolivianos es 0 
+         //////////DOLARES es 1
+         
+         /////moneda igual a Bolivianos
+         /// Conversion de DOLARES a BOLIVIANOS
+         if($moneda==0){
+             $monto=$monto*6.84;
+             return $monto;
+             //moneda igual a dolares
+             ///Conversion de Bolivianos a Dolares;
+         }else{
+             $monto=$monto*(1/7);
+             return $monto;
+         }
+         ///////
+         //////////NOTA IMPORTANE
+         ///    no ESTOY APLICANDO COMPRA Y VENTA 
+         //     PUEDE QUE IMPLEMENTE DOS FUNCIONES CONVERSIONES DISTINTAS EN ESE CASO
+         //     UNO PARA COMPRA Y OTRA PARA VENTA
+         /////////
+         /////////////
+         
+         
+     }
+     
+     
+    //////////////////////////IDEA SEPARAR LOS 3 TIPOS DE TRANSACCION
+     
      public function VerificarTransaccion($transaccion){
         
-        if($transaccion->monto()!=0){
+        if($transaccion->monto()>0){
             
             //////Construccion de las cuentas
             $origen= $this->ObtenerCuenta($transaccion->cuenta_origen());
