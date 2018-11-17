@@ -33,7 +33,7 @@ $row= ConectarBD::send("bd_usuario",$sql);
 $idcaja=$row->fetch_row()[0];               ////ID DE LA CAJA 
 
 ///////////CONSTRUCCION DEL OBJETO TRANSACCION///////////
-$transaccion=new TransaccionModelo;
+$transaccion=new TransaccionModelo();
 
 //$transaccion->cuenta_destino();
 $transaccion->cuenta_origen($cuenta);
