@@ -230,11 +230,112 @@ class CajeroModelo  extends UsuarioModelo{
             return false;
             
         }
-        
-         
-         
          
      }
+     
+     
+      public function Deposito($transaccion,$moneda){
+         
+         if($transaccion->monto()>0){
+            //////Construccion de las cuentas
+            $origen= $this->ObtenerCuenta($transaccion->cuenta_destino());
+            echo "Cuenta Origen:";
+            echo "<br>";
+            
+            echo $origen->getId_cliente();
+            echo "<br>";
+            echo $origen->getMoneda();
+            echo "<br>";
+            echo $origen->getMonto();
+            echo "<br>";
+            echo $origen->getTipo();
+            ////////////////////////////////
+            $monto=$transaccion->monto();
+            
+            echo "MONTO despues de transaccion inicio:  ";
+            echo $monto;
+            echo "<br>";
+            
+            $monto=$this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
+            
+                       $transaccion->monto($monto);
+            echo "MONTO despues de verificar moneda:   ";
+            echo $monto;
+            echo "<br>";
+            if($monto>0){
+                       $monto=$origen->getMonto()+$monto;
+                       echo "MONTO despues de Operacion:  ";
+                        echo $monto;
+                        
+                        echo "<br>";
+                       $origen->Monto($monto);
+                       
+                       $this->update_cuenta($origen);
+                       $this->registrartransaccion($transaccion);
+                       return true;
+            }else {
+                return false;
+                
+            }           
+        }else{
+            return false;
+            
+        }
+         
+     }
+     
+     
+     
+      public function Transferencia($transaccion,$moneda){
+         
+         if($transaccion->monto()>0){
+            //////Construccion de las cuentas
+            $origen= $this->ObtenerCuenta($transaccion->cuenta_origen());
+            echo "Cuenta Origen:";
+            echo "<br>";
+            
+            echo $origen->getId_cliente();
+            echo "<br>";
+            echo $origen->getMoneda();
+            echo "<br>";
+            echo $origen->getMonto();
+            echo "<br>";
+            echo $origen->getTipo();
+            ////////////////////////////////
+            $monto=$transaccion->monto();
+            
+            echo "MONTO despues de transaccion inicio:  ";
+            echo $monto;
+            echo "<br>";
+            
+            $monto=$this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
+            
+                       $transaccion->monto($monto);
+            echo "MONTO despues de verificar moneda:   ";
+            echo $monto;
+            echo "<br>";
+            if($monto<=$origen->getMonto()){
+                       $monto=$origen->getMonto()-$monto;
+                       echo "MONTO despues de Operacion:  ";
+                        echo $monto;
+                        
+                        echo "<br>";
+                       $origen->Monto($monto);
+                       
+                       $this->update_cuenta($origen);
+                       $this->registrartransaccion($transaccion);
+                       return true;
+            }else {
+                return false;
+                
+            }           
+        }else{
+            return false;
+            
+        }
+         
+     }
+     /*
      public function VerificarTransaccion($transaccion){
         
         if($transaccion->monto()>0){
@@ -281,7 +382,7 @@ class CajeroModelo  extends UsuarioModelo{
         
         
     }
-
+*/
 
     
     public function CrearCuenta($cuenta) {

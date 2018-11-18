@@ -12,8 +12,11 @@ $sql = "SELECT id_cliente from clientes WHERE nit_ci = '$code' " ;
 $_SESSION["id_cliente"] = ConectarBD::send("bd_usuario", $sql)->fetch_row()[0];
 }
 
-if (isset($_POST['btn_deposito'])) {
-    require_once __DIR__ . '/../../vista/VistasCajero/Deposito.php';
+if (isset($_POST['btn_deposito']) and $code!="") {
+    require_once __DIR__ . '/../../vista/VistasCajero/DepositoC.php';
+}else{
+        require_once __DIR__ . '/../../vista/VistasCajero/Deposito.php';
+
 }
 
 if (isset($_POST['btn_retiro'])) {

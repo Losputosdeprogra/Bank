@@ -37,9 +37,9 @@
 
         <div class="col-md-4">
 
-            <center><h1>RETIRO</h1></center>
+            <center><h1>Deposito C</h1></center>
 
-            <form method="POST" action="../../controlador/ControladoresCajero/RetiroControlador.php" >
+            <form method="POST" action="../../controlador/ControladoresCajero/DepositoControlador.php" >
 
                 <strong>Numero de Cuenta:   
                 
@@ -61,7 +61,7 @@
                     
                 </div>
                     <center>
-                <input type="submit" value="Realizar Retiro" class="btn btn-primary" name="btn_RealizarRetiro">
+                <input type="submit" value="Realizar Deposito" class="btn btn-primary" name="btn_RealizarRetiro">
                     </center>
                 
             </form>
