@@ -56,8 +56,8 @@
                     <input type="number" name="monto" class="form-control" id="monto">
                 </div> 
                 <div class="form-group">
-                    <input type="radio" name="moneda" value="Dolares"> Dolares  
-                    <input type="radio" name="moneda" value="Bolivianos"> Bolivianos <br>
+                    <input type="radio" name="moneda" value="1"> Dolares  
+                    <input type="radio" name="moneda" value="0"> Bolivianos <br>
                     
                 </div>
                     <center>

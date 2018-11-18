@@ -16,11 +16,15 @@ class CajeroModelo  extends UsuarioModelo{
         }else {
             return $this->id_caja;
         } 
-        
     }
+    
+    
+    
     public function Tabla (){
        return "cajeros";
     }    
+    
+    
     
     public function verificarUsuario() {                         // Esta funcion revisa si el usuario existe en la tabla
         return parent::verificar($this->TablaCorrespondeinte); //y sabe su contraseña.
@@ -30,8 +34,11 @@ class CajeroModelo  extends UsuarioModelo{
         parent::Extracto($nombreDelCliente);
     }
     
+    
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     public function RealizarTransaccion($transaccion){
-        $conexion=ConectarBD::conectar();
+        $conexion=ConectarBD::conectar("bd_finanzas");
         
         $sql = "INSERT INTO `transacciones`( `fecha`, `hora`, `tipo`, `cuenta_origen`, `cuenta_destino`, `monto`, `id_caja`, `id_cajero`, `id_sucursal`) VALUES(?,?,?,?,?,?,?,?,?);";
             $stmt = $conexion->prepare($sql);
@@ -44,8 +51,9 @@ class CajeroModelo  extends UsuarioModelo{
                 return(false);
             } 
         
-        
     }
+    
+    
     public function ObtenerCuenta($idcuenta) {
         $sql = "SELECT * FROM cuentas WHERE id_cuenta='$idcuenta';";
         $rows= ConectarBD::send("bd_finanzas",$sql);
@@ -59,11 +67,21 @@ class CajeroModelo  extends UsuarioModelo{
     }
     
      public function update_cuenta($cuenta){
-        $conexion=ConectarBD::conectar();
+        $conexion=ConectarBD::conectar("bd_finanzas");
         $sql="UPDATE `cuentas` SET `monto`=?,`tipo`=?,`moneda`=?,`id_cliente`=? WHERE `id_cuenta`=?;";
         $stmt = $conexion->prepare($sql);
-            $stmt->bind_param('isiii', $cuenta->getMonto(), $cuenta->getTipo(),$cuenta->getMoneda(),$cuenta->getId_cliente(),$cuenta->id_cuenta());
-          if ($stmt->execute()) {
+           /// $stmt->bind_param('isiii', $cuenta->getMonto(), $cuenta->getTipo(),$cuenta->getMoneda(),$cuenta->getId_cliente(),$cuenta->id_cuenta());
+                $a0=$cuenta->getMonto();
+                $a1=$cuenta->getTipo();
+                $a2=$cuenta->getMoneda();
+                $a3=$cuenta->getId_cliente();
+                $a4=$cuenta->id_cuenta(); 
+        
+        
+        $stmt->bind_param('isiii',$a0,$a1,$a2,$a3,$a4 );
+          
+        
+        if ($stmt->execute()) {
                 $conexion->close();
                 return(true);
             } else {
@@ -71,6 +89,9 @@ class CajeroModelo  extends UsuarioModelo{
                 return(false);
             } 
      }
+     
+     
+     
      //////////CUANTOS PARAMETROS ?
      ///////////IDEA, DE "1PARAM" A "2PARAM"
      ////////USAR LA CONVERSION EN ESTA MISMA FUNCION
@@ -106,10 +127,12 @@ class CajeroModelo  extends UsuarioModelo{
          /////moneda igual a Bolivianos
          /// Conversion de DOLARES a BOLIVIANOS
          if($moneda==0){
-             $monto=$monto*6.84;
+             $monto=$monto*7;
              return $monto;
-             //moneda igual a dolares
-             ///Conversion de Bolivianos a Dolares;
+             
+             
+         //moneda igual a dolares
+         ///Conversion de Bolivianos a Dolares;
          }else{
              $monto=$monto*(1/7);
              return $monto;
@@ -125,9 +148,93 @@ class CajeroModelo  extends UsuarioModelo{
          
      }
      
-     
-    //////////////////////////IDEA SEPARAR LOS 3 TIPOS DE TRANSACCION
-     
+     public function registrartransaccion($transaccion){
+        $conexion=ConectarBD::conectar("bd_finanzas");
+        $sql="INSERT INTO `transacciones`( `fecha`, `hora`, `tipo`, `cuenta_origen`, `cuenta_destino`, `monto`, `id_caja`, `id_cajero`, `id_sucursal`) VALUES (?,?,?,?,?,?,?,?,?);";
+        $stmt = $conexion->prepare($sql);
+         ///   $stmt->bind_param('sssiiiiii',$transaccion->fecha(),$transaccion->hora(),$transaccion->tipo(),$transaccion->cuenta_origen(),$transaccion->cuenta_destino(),$transaccion->monto(),$transaccion->id_caja(),$transaccion->id_cajero(),$transaccion->id_sucursal() );
+        /////////////// 
+            $a0=$transaccion->fecha();
+                
+                $a1=$transaccion->hora();
+                $a2=$transaccion->tipo();
+                $a3=$transaccion->cuenta_origen();
+                $a4=$transaccion->cuenta_destino();
+                $a5=$transaccion->monto();
+                $a6=$transaccion->id_caja();
+                $a7=$transaccion->id_cajero();
+                $a8=$transaccion->id_sucursal();
+        $stmt->bind_param('sssiiiiii',$a0,$a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8);
+          
+        /////////////
+        if ($stmt->execute()) {
+                $conexion->close();
+                return(true);
+            } else {
+                $conexion->close();
+                return(false);
+            }
+         
+     }
+
+
+     ///////////////////////////IDEA SEPARAR LOS 3 TIPOS DE TRANSACCION
+     //////TIPO DE MONEDA DE LA TRANSACCION
+     // EJEMPLO, QUIERO RETIRAR EN DOLARES
+     // QUIERO RETIRAR EN BOLIVIANOS
+     //////
+     public function Retiro($transaccion,$moneda){
+         
+         if($transaccion->monto()>0){
+            //////Construccion de las cuentas
+            $origen= $this->ObtenerCuenta($transaccion->cuenta_origen());
+            echo "Cuenta Origen:";
+            echo "<br>";
+            
+            echo $origen->getId_cliente();
+            echo "<br>";
+            echo $origen->getMoneda();
+            echo "<br>";
+            echo $origen->getMonto();
+            echo "<br>";
+            echo $origen->getTipo();
+            ////////////////////////////////
+            $monto=$transaccion->monto();
+            
+            echo "MONTO despues de transaccion inicio:  ";
+            echo $monto;
+            echo "<br>";
+            
+            $monto=$this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
+            
+                       $transaccion->monto($monto);
+            echo "MONTO despues de verificar moneda:   ";
+            echo $monto;
+            echo "<br>";
+            if($monto<=$origen->getMonto()){
+                       $monto=$origen->getMonto()-$monto;
+                       echo "MONTO despues de Operacion:  ";
+                        echo $monto;
+                        
+                        echo "<br>";
+                       $origen->Monto($monto);
+                       
+                       $this->update_cuenta($origen);
+                       $this->registrartransaccion($transaccion);
+                       return true;
+            }else {
+                return false;
+                
+            }           
+        }else{
+            return false;
+            
+        }
+        
+         
+         
+         
+     }
      public function VerificarTransaccion($transaccion){
         
         if($transaccion->monto()>0){
@@ -135,18 +242,17 @@ class CajeroModelo  extends UsuarioModelo{
             //////Construccion de las cuentas
             $origen= $this->ObtenerCuenta($transaccion->cuenta_origen());
             $destino=$this->ObtenerCuenta($transaccion->cuenta_destino());
-            
-            
             ////////////////////////////////
             
-            $aux;
+            
+            $monto;
             /////Retiro o TRansferencia
             if($transaccion->cuenta_origen()!=0){
                 ////////REtiro
                 if($transaccion->cuenta_destino()==0){
                    if($transaccion->monto()<=$origen->getMonto()){
-                       $aux=$origen->getMonto()-$transaccion->monto();
-                       $origen->Moneda($aux);
+                       $monto=$origen->getMonto()-$transaccion->monto();
+                       $origen->Moneda($monto);
                        return true;
                    }else {return false;}
                    

@@ -8,7 +8,7 @@ class CuentaModelo {
     private $Monto;
     private  $id_clinete;
     
-    public function set($monto=0,$tipo="",$moneda="", $id_cliente=0){
+    public function set($monto=0,$tipo="",$moneda=0, $id_cliente=0){
         $this->Tipo       = $tipo;
         $this->Moneda     = $moneda;
         $this->Monto      = $monto;
@@ -17,6 +17,9 @@ class CuentaModelo {
     
     public function Moneda($x=0){
         $this->Moneda=$x;
+    }
+    public function Monto($x=0){
+        $this->Monto=$x;
     }
     public function getTipo(){
         return $this->Tipo;

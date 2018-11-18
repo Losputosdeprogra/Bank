@@ -15,13 +15,21 @@ $cajero=$_SESSION['Cajero'];
 
  $cliente=$_SESSION['id_cliente'];          ////ID DEL CLIENTE
  $monto=$_POST['monto'];                    ///MONTO
- $tipo="retiro";                            ///TIPO DE TRANSACCION
+ $tipo="Retiro";                            ///TIPO DE TRANSACCION
+ 
  $moneda=$_POST['moneda'];                  ///TIPO DE MONEDA
+ /*if($moneda=="Bolivianos"){
+     $moneda=0;
+ }else{
+     $moneda=1;
+ }
+
+  */
  $cuenta=$_POST['cuentas'];                 ////CUENTA DEL CLIENTE
  $fecha=date("Y-m-d");                      ///FECHA ACTUAL
 $hora=date("H:i:s");                        ///HORA ACTUAL
  $idcajero=$cajero->getIdCliente();         ///ID DEL CAJERO
- 
+  ///FFFFAAAAAAALLLLLTAAAAAA///////////////                                /////FALTA ID SUCURSAL
  
  ////////////SQL/////////////////////
 $tabla= $cajero->Tabla();                   ////TABLA PARA LA BASE DE DATOS
@@ -41,10 +49,15 @@ $transaccion->fecha($fecha);
 $transaccion->hora($hora);
 $transaccion->id_caja($idcaja);
 $transaccion->id_cajero($idcajero);
-//$transaccion->id_sucursal();
+$transaccion->id_sucursal(1);
 $transaccion->monto($monto);
+$transaccion->tipo($tipo);
 //////////////////////////////////////////////////////////
 
+$actor=new CajeroModelo();
+if($actor->Retiro($transaccion, $moneda)){
+    echo "Si se pudo Realizar";
+}else {echo"No se pudo realizar";}
 
 
 

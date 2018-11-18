@@ -23,9 +23,9 @@ class ConectarBD {
         return $rows;
     }
     
-    public static function conectar() {
+    public static function conectar($basededatos) {
         $host = "localhost"; //define el servidor
-        $basededatos = "bd_demo";   //define el nombre de la base de datbos
+           //define el nombre de la base de datbos
         $usuariodb = "root";    //nombre del usuario autorizado para la BD
         $clavedb = "";  //password del usuario
         try {   //bloque de proteccion de fallos mediante intentos
