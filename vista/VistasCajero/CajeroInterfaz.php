@@ -47,7 +47,7 @@
                             <input type="submit" value="Realizar extracto" class="btn btn-primary" name="btn_Realizar_extracto"></br></br>
                             <input type="submit" value="Deposito" class="btn btn-success" name="btn_deposito">  
                             <input type="submit" value="Retiro" class="btn btn-success" name="btn_retiro">  
-                            <input type="submit" value="Transferencia" class="btn btn-success" name="btn_tranferencia"><br><br>
+                            <input type="submit" value="Transferencia" class="btn btn-success" name="btn_transferencia"><br><br>
                             
                             <input type="submit" value="Crear cuenta nueva" class="btn btn-danger" name="btn_Crear_cuenta"></br></br>
                             <input type="submit" value="Registrar nuevo cliente" class="btn btn-info" name="btn_Registrar_cliente">

@@ -291,6 +291,7 @@ class CajeroModelo  extends UsuarioModelo{
          if($transaccion->monto()>0){
             //////Construccion de las cuentas
             $origen= $this->ObtenerCuenta($transaccion->cuenta_origen());
+            $destino= $this->ObtenerCuenta($transaccion->cuenta_destino());
             echo "Cuenta Origen:";
             echo "<br>";
             
@@ -301,12 +302,25 @@ class CajeroModelo  extends UsuarioModelo{
             echo $origen->getMonto();
             echo "<br>";
             echo $origen->getTipo();
+            echo "<br>";
+            echo "Cuenta DEstino:";
+            echo "<br>";
+            
+            echo $destino->getId_cliente();
+            echo "<br>";
+            echo $destino->getMoneda();
+            echo "<br>";
+            echo $destino->getMonto();
+            echo "<br>";
+            echo $destino->getTipo();
             ////////////////////////////////
             $monto=$transaccion->monto();
             
             echo "MONTO despues de transaccion inicio:  ";
             echo $monto;
             echo "<br>";
+            ///////////////////////////
+            
             
             $monto=$this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
             
@@ -315,20 +329,41 @@ class CajeroModelo  extends UsuarioModelo{
             echo $monto;
             echo "<br>";
             if($monto<=$origen->getMonto()){
-                       $monto=$origen->getMonto()-$monto;
+                        $nuevoorigen=$origen->getMonto()-$monto;
+                      
                        echo "MONTO despues de Operacion:  ";
                         echo $monto;
                         
                         echo "<br>";
-                       $origen->Monto($monto);
+                       $origen->Monto($nuevoorigen);
                        
-                       $this->update_cuenta($origen);
-                       $this->registrartransaccion($transaccion);
-                       return true;
+                       
+                       
             }else {
                 return false;
                 
-            }           
+            }
+            $monto=$this->VerificarMoneda( $moneda,$destino->getMoneda(), $monto);
+            
+            if($monto>0){
+                       $monto=$destino->getMonto()+$monto;
+                       echo "MONTO despues de Operacion:  ";
+                        echo $monto;
+                        
+                        echo "<br>";
+                       $destino->Monto($monto);
+                       
+                       
+                       
+                       
+            }else {
+                return false;
+                
+            }
+            $this->update_cuenta($origen);
+            $this->update_cuenta($destino);       
+            $this->registrartransaccion($transaccion);
+            return true;
         }else{
             return false;
             
