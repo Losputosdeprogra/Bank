@@ -14,28 +14,20 @@ $cajero=$_SESSION['Cajero'];
 
 ////////////////VARIABLES NECESARIAS PARA CONSTRUIR UNA TRANSACCION (ESTABA PROBANDO POR SEPARADO)
 
-echo "<br>";
-echo "MONTO  ";
- echo $monto=$_POST['monto'];                    ///MONTO
-echo "<br>";
-echo "TIPO  ";
- echo $tipo="Deposito";                            ///TIPO DE TRANSACCION
-echo "<br>";
-echo "MONEDA  "; 
- echo $moneda=$_POST['moneda'];                  ///TIPO DE MONEDA
-echo "<br>";
-echo "  CUENTA   "; 
 
- echo $cuenta=$_POST['cuentas'];                 ////CUENTA DEL CLIENTE
- echo "<br>";
-echo "FECHA  ";
- echo $fecha=date("Y-m-d");                      ///FECHA ACTUAL
- echo "<br>";
-echo "HORA  ";
-echo $hora=date("H:i:s");                        ///HORA ACTUAL
-echo "<br>";
-echo "CAJERO  "; 
-echo $idcajero=$cajero->getIdCliente();         ///ID DEL CAJERO
+  $monto=$_POST['monto'];                    ///MONTO
+
+  $tipo="Deposito";                            ///TIPO DE TRANSACCION
+ 
+  $moneda=$_POST['moneda'];                  ///TIPO DE MONEDA 
+
+  $cuenta=$_POST['cuentas'];                 ////CUENTA DEL CLIENTE
+
+  $fecha=date("Y-m-d");                      ///FECHA ACTUAL
+
+ $hora=date("H:i:s");                        ///HORA ACTUAL
+
+ $idcajero=$cajero->getIdCliente();         ///ID DEL CAJERO
   ///FFFFAAAAAAALLLLLTAAAAAA///////////////                                /////FALTA ID SUCURSAL
  
  ////////////SQL/////////////////////
@@ -43,17 +35,15 @@ $tabla= $cajero->Tabla();                   ////TABLA PARA LA BASE DE DATOS
 
 $sql = "SELECT id_cliente FROM cuentas WHERE id_cuenta='$cuenta';";
 $row= ConectarBD::send("bd_finanzas", $sql);
-echo "<br>";
-echo "ID CLIENTE";
-echo $cliente=$row->fetch_row()[0];              ///////ID CLIENTE
+
+ $cliente=$row->fetch_row()[0];              ///////ID CLIENTE
 
 
 $sql = "SELECT id_caja FROM $tabla WHERE id_cajero='$idcajero';";
 $row= ConectarBD::send("bd_usuario",$sql);
 /////////////////////////////////////
-echo "<br>";
-echo "CAJA  ";
-echo $idcaja=$row->fetch_row()[0];               ////ID DE LA CAJA 
+
+ $idcaja=$row->fetch_row()[0];               ////ID DE LA CAJA 
 
 
 ///////////CONSTRUCCION DEL OBJETO TRANSACCION///////////

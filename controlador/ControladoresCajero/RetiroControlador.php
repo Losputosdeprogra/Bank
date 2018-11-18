@@ -10,7 +10,7 @@ date_default_timezone_set("America/La_Paz");
 session_start();
 $cajero=$_SESSION['Cajero'];
 
-///////////NO CREO NECESARIO CREAR EL OBTEJO TRANSACCION EN ESTA PAGINA
+
 ////////////////VARIABLES NECESARIAS PARA CONSTRUIR UNA TRANSACCION (ESTABA PROBANDO POR SEPARADO)
 
  $cliente=$_SESSION['id_cliente'];          ////ID DEL CLIENTE
@@ -64,42 +64,3 @@ if($actor->Retiro($transaccion, $moneda)){
 
 
 
-/////////////////////////////////////////////////RESOLVER ESTE ASUNTO QUE NO SIRVE CON EL CONECTARBD DE DIEGO
-/*
-$sql="INSERT INTO `transacciones`(`id_trans`, `fecha`, `hora`, `tipo`, `cuenta_origen`, `cuenta_destino`, `monto`, `id_caja`, `id_cajero`, `id_sucursal`) VALUES (?,'$fecha','$hora', $tipo,'$cuenta','----','$monto','$idcaja','$idcajero','0')";
-ConectarBD::send("bd_finanzas",$sql);
-
-    ////////////////////ASI ES COMO SE DEBERIA SEGUIR///////////
- * //////////////////IDEA AUMENTAR EL METODO "CLASICO" DEL PROFESOR//////////////////
-
-            $sql = "INSERT INTO cliente(nombre, nit, telefono, email, edad) VALUES(?,?,?,?,?);";
-            $stmt = $conexion->prepare($sql);
-            $stmt->bind_param('ssssi', $this->nombre, $this->nit, $this->telefono, $this->email, $this->edad);
-
-            
-            */
-//////////////////////////////////
-/*Back
- * Fecha+++
- * Hora +++
- * idcaja +++
- * idcajero ++++
- * idsucursal +++
- * 
-echo "Today is " . date("Y-m-d") . "<br>";
- * 
-date_default_timezone_set("America/La_Paz");
-echo "The time is " . date("H:i:s a");
- * 
- * 
- * 
- * Front
- * Cuenta  +++++
- * Monto    ++++
- * tipoi   +++++
- * idcliente +++
- * Moneda ++++
- * 
- * 
- * 
- */

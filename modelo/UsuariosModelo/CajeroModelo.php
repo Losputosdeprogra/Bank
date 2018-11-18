@@ -70,7 +70,6 @@ class CajeroModelo  extends UsuarioModelo{
         $conexion=ConectarBD::conectar("bd_finanzas");
         $sql="UPDATE `cuentas` SET `monto`=?,`tipo`=?,`moneda`=?,`id_cliente`=? WHERE `id_cuenta`=?;";
         $stmt = $conexion->prepare($sql);
-           /// $stmt->bind_param('isiii', $cuenta->getMonto(), $cuenta->getTipo(),$cuenta->getMoneda(),$cuenta->getId_cliente(),$cuenta->id_cuenta());
                 $a0=$cuenta->getMonto();
                 $a1=$cuenta->getTipo();
                 $a2=$cuenta->getMoneda();
@@ -152,8 +151,7 @@ class CajeroModelo  extends UsuarioModelo{
         $conexion=ConectarBD::conectar("bd_finanzas");
         $sql="INSERT INTO `transacciones`( `fecha`, `hora`, `tipo`, `cuenta_origen`, `cuenta_destino`, `monto`, `id_caja`, `id_cajero`, `id_sucursal`) VALUES (?,?,?,?,?,?,?,?,?);";
         $stmt = $conexion->prepare($sql);
-         ///   $stmt->bind_param('sssiiiiii',$transaccion->fecha(),$transaccion->hora(),$transaccion->tipo(),$transaccion->cuenta_origen(),$transaccion->cuenta_destino(),$transaccion->monto(),$transaccion->id_caja(),$transaccion->id_cajero(),$transaccion->id_sucursal() );
-        /////////////// 
+        
             $a0=$transaccion->fecha();
                 
                 $a1=$transaccion->hora();
@@ -370,54 +368,7 @@ class CajeroModelo  extends UsuarioModelo{
         }
          
      }
-     /*
-     public function VerificarTransaccion($transaccion){
-        
-        if($transaccion->monto()>0){
-            
-            //////Construccion de las cuentas
-            $origen= $this->ObtenerCuenta($transaccion->cuenta_origen());
-            $destino=$this->ObtenerCuenta($transaccion->cuenta_destino());
-            ////////////////////////////////
-            
-            
-            $monto;
-            /////Retiro o TRansferencia
-            if($transaccion->cuenta_origen()!=0){
-                ////////REtiro
-                if($transaccion->cuenta_destino()==0){
-                   if($transaccion->monto()<=$origen->getMonto()){
-                       $monto=$origen->getMonto()-$transaccion->monto();
-                       $origen->Moneda($monto);
-                       return true;
-                   }else {return false;}
-                   
-                   
-                   
-             ////////TRansferencia   
-                }else{
-                    
-                    
-                    
-                    
-                } 
-            ////////Deposito    
-            }else{
-                
-                       $aux=$destino->getMonto()+$transaccion->monto();
-                       $destino->Moneda($aux);
-                       return true;
-                
-                
-                
-            }
-            
-            
-        }else{ return false;}
-        
-        
-    }
-*/
+    
 
     
     public function CrearCuenta($cuenta) {
