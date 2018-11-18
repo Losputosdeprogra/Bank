@@ -14,3 +14,28 @@ if (isset($_POST['btn_Crear_Sucursal']))
     
       require_once __DIR__ . '/../../vista/VistasAdministrador/CrearSucursal.php';
 }
+
+if(isset($_POST['btn_Crear_Caja']))
+{
+    require_once __DIR__.'/../../vista/VistasAdministrador/CrearCaja.php';
+}
+
+if(isset($_POST['btn_Registrar_Cajero']))
+{
+    require_once __DIR__.'/../../vista/VistasAdministrador/RegistrarCajero.php';
+}
+
+if(isset($_POST['btn_Asignar_Cajero']))
+{
+    require_once __DIR__.'/../../vista/VistasAdministrador/AsignarCajero.php';
+}
+
+
+$administrador=new AdministradorModelo();
+
+if(isset($_POST['btn_Reporte']))
+{
+    require_once __DIR__.'/../../vista/VistasAdministrador/Reporte.php';
+    
+}
+

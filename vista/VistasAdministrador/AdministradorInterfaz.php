@@ -36,7 +36,9 @@
                             <input type="submit" value="Crear sucursal" class="btn btn-primary" name="btn_Crear_Sucursal"></br></br>
                             <input type="submit" value="Crear caja" class="btn btn-success" name="btn_Crear_Caja"></br></br>
                             <input type="submit" value="Registrar cajero" class="btn btn-danger" name="btn_Registrar_Cajero"></br></br>
-                            <input type="submit" value="Asignar cajero" class="btn btn-info" name="btn_Asignar_Cajero">
+                            <input type="submit" value="Asignar cajero" class="btn btn-info" name="btn_Asignar_Cajero"></br></br>
+                            <input type="submit" value="Reporte" class="btn btn-primary" name="btn_Reporte"></br></br>
+                           
                         </center>
                     </fieldset>
                 </form>
