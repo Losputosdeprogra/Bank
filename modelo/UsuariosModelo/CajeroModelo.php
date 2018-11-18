@@ -186,35 +186,29 @@ class CajeroModelo  extends UsuarioModelo{
          if($transaccion->monto()>0){
             //////Construccion de las cuentas
             $origen= $this->ObtenerCuenta($transaccion->cuenta_origen());
-            echo "Cuenta Origen:";
-            echo "<br>";
             
-            echo $origen->getId_cliente();
-            echo "<br>";
-            echo $origen->getMoneda();
-            echo "<br>";
-            echo $origen->getMonto();
-            echo "<br>";
-            echo $origen->getTipo();
+            
+             $origen->getId_cliente();
+            
+             $origen->getMoneda();
+           
+             $origen->getMonto();
+
+             $origen->getTipo();
             ////////////////////////////////
             $monto=$transaccion->monto();
             
-            echo "MONTO despues de transaccion inicio:  ";
-            echo $monto;
-            echo "<br>";
+            
             
             $monto=$this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
             
                        $transaccion->monto($monto);
-            echo "MONTO despues de verificar moneda:   ";
-            echo $monto;
-            echo "<br>";
+            
             if($monto<=$origen->getMonto()){
                        $monto=$origen->getMonto()-$monto;
-                       echo "MONTO despues de Operacion:  ";
-                        echo $monto;
+                         $monto;
                         
-                        echo "<br>";
+                        
                        $origen->Monto($monto);
                        
                        $this->update_cuenta($origen);
@@ -237,35 +231,26 @@ class CajeroModelo  extends UsuarioModelo{
          if($transaccion->monto()>0){
             //////Construccion de las cuentas
             $origen= $this->ObtenerCuenta($transaccion->cuenta_destino());
-            echo "Cuenta Origen:";
-            echo "<br>";
             
-            echo $origen->getId_cliente();
-            echo "<br>";
-            echo $origen->getMoneda();
-            echo "<br>";
-            echo $origen->getMonto();
-            echo "<br>";
-            echo $origen->getTipo();
+            
+             $origen->getId_cliente();
+            
+             $origen->getMoneda();
+            
+             $origen->getMonto();
+            
+             $origen->getTipo();
             ////////////////////////////////
             $monto=$transaccion->monto();
             
-            echo "MONTO despues de transaccion inicio:  ";
-            echo $monto;
-            echo "<br>";
             
             $monto=$this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
             
                        $transaccion->monto($monto);
-            echo "MONTO despues de verificar moneda:   ";
-            echo $monto;
-            echo "<br>";
+            
             if($monto>0){
                        $monto=$origen->getMonto()+$monto;
-                       echo "MONTO despues de Operacion:  ";
-                        echo $monto;
-                        
-                        echo "<br>";
+                       
                        $origen->Monto($monto);
                        
                        $this->update_cuenta($origen);
@@ -290,49 +275,39 @@ class CajeroModelo  extends UsuarioModelo{
             //////Construccion de las cuentas
             $origen= $this->ObtenerCuenta($transaccion->cuenta_origen());
             $destino= $this->ObtenerCuenta($transaccion->cuenta_destino());
-            echo "Cuenta Origen:";
-            echo "<br>";
+          
             
-            echo $origen->getId_cliente();
-            echo "<br>";
-            echo $origen->getMoneda();
-            echo "<br>";
-            echo $origen->getMonto();
-            echo "<br>";
-            echo $origen->getTipo();
-            echo "<br>";
-            echo "Cuenta DEstino:";
-            echo "<br>";
+             $origen->getId_cliente();
             
-            echo $destino->getId_cliente();
-            echo "<br>";
-            echo $destino->getMoneda();
-            echo "<br>";
-            echo $destino->getMonto();
-            echo "<br>";
-            echo $destino->getTipo();
+             $origen->getMoneda();
+           
+             $origen->getMonto();
+           
+             $origen->getTipo();
+            
+            
+             $destino->getId_cliente();
+            
+             $destino->getMoneda();
+            
+             $destino->getMonto();
+            
+             $destino->getTipo();
             ////////////////////////////////
             $monto=$transaccion->monto();
             
-            echo "MONTO despues de transaccion inicio:  ";
-            echo $monto;
-            echo "<br>";
+           
             ///////////////////////////
             
             
             $monto=$this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
             
                        $transaccion->monto($monto);
-            echo "MONTO despues de verificar moneda:   ";
-            echo $monto;
-            echo "<br>";
+            
             if($monto<=$origen->getMonto()){
                         $nuevoorigen=$origen->getMonto()-$monto;
                       
-                       echo "MONTO despues de Operacion:  ";
-                        echo $monto;
-                        
-                        echo "<br>";
+                       
                        $origen->Monto($nuevoorigen);
                        
                        
@@ -345,10 +320,7 @@ class CajeroModelo  extends UsuarioModelo{
             
             if($monto>0){
                        $monto=$destino->getMonto()+$monto;
-                       echo "MONTO despues de Operacion:  ";
-                        echo $monto;
-                        
-                        echo "<br>";
+                       
                        $destino->Monto($monto);
                        
                        
