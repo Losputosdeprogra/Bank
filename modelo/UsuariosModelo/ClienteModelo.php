@@ -18,6 +18,11 @@ class ClienteModelo extends UsuarioModelo{
         return parent::verificar($this->TablaCorrespondiente);    //y sabe su contraseña.
     }                                                             //Utiliza la vatiable TablaCorrespondiente para realizar
                                                                   //la consulta en la tabla correcta.
+    public function ObtenerIDconNit($nit) {
+        $sql = "SELECT id_cliente from clientes WHERE nit_ci = $nit " ;
+        return ConectarBD::send("bd_usuario", $sql)->fetch_row()[0];
+    }
+    
     public function RealizarExtracto($fi,$ff,$id) {
         return parent::Extracto($fi,$ff,$id);
     }

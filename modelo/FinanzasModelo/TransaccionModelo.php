@@ -2,7 +2,7 @@
 
 class TransaccionModelo {
     
-     private $id_trans;     ////int
+    private $id_trans;     ////int
     private $fecha;     ///date
     private $hora;      ///time
     private $tipo;      ///carchar
@@ -113,10 +113,4 @@ class TransaccionModelo {
             return $this->id_sucursal;
         }   
     }
-    ///////////////////
-    
-    
-    
-    
-    
 }

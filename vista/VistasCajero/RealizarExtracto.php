@@ -68,6 +68,8 @@
                       <input type="submit" value="Solicitar extracto general" class="btn btn-danger" name="btn_Solicitar_extracto_general">
                       
                     </center>
+                    
+                    <br><p>*Si decea hacer un extracto de un solo dia solo necesita seleccionar fecha inicio</p>
 
                 </form>
             </div>

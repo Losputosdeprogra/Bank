@@ -13,14 +13,18 @@ $Cliente->setNombre($_SESSION["nombre"]);      //Se recibe el nombre del usuario
 
 if (isset($_POST['btn_Solicitar_extracto'])) {
     
-    if($FechaFinal != "" && $FechaInicio != ""){
+    if($FechaFinal == ""){
+        $FechaFinal = $FechaInicio;
+    }
+    
+    if($FechaInicio != ""){
     
         $Extracto = $Cliente->RealizarExtracto($FechaInicio,$FechaFinal,$id_cuenta);
         MostrarExtracto($Extracto);
         
     }else{
         echo "<br><br><br><br>";
-        echo "<center>Dede introducir ambas fechas</center>";
+        echo "<center>Dede introducir al menos la fecha de inicio</center>";
     }
 }
 

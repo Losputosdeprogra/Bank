@@ -3,10 +3,11 @@
     $ListaDeCuentas = "";
     
     $idCliente = $_SESSION["id_cliente"];
-    $sql = "SELECT id_cuenta from cuentas WHERE id_cliente = $idCliente";
+    $sql = "SELECT id_cuenta,moneda from cuentas WHERE id_cliente = $idCliente";
     $rows = ConectarBD::send("bd_finanzas", $sql);
     while($filas= $rows->fetch_row()){
-        $ListaDeCuentas .= " <option value='".$filas[0]."'>".$filas[0]."</option>";
+
+        $ListaDeCuentas .= " <option value='".$filas[0]."'>".$filas[0]." (".$filas[1].")"."</option>";
     }
     //Aqui estamos consiguiendo los numeros de cuenta que van en el combobox
 ?>
@@ -54,12 +55,12 @@
                     
                     <div class="form-group">
                         <label for="FechaInicio">Fecha de inicio </label>
-                        <input type="datetime-local" name="FechaInicio" class="form-control" id="fechaInicio" placeholder="dd/mm/yyy">
+                        <input type="date" name="FechaInicio" class="form-control" id="fechaInicio" placeholder="dd/mm/yyy">
                     </div>
 
                     <div class="form-group">
                         <label for="FechaFinal">Fecha final </label>
-                        <input type="datetime-local" name="FechaFinal" class="form-control" id="fechaFinal" placeholder="dd/mm/yyy">
+                        <input type="date" name="FechaFinal" class="form-control" id="fechaFinal" placeholder="dd/mm/yyy">
                     </div>  
 
                     <center>
@@ -68,6 +69,8 @@
                       <input type="submit" value="Solicitar extracto general" class="btn btn-danger" name="btn_Solicitar_extracto_general">
                       
                     </center>
+                    
+                    <br><p>*Si decea hacer un extracto de un solo dia solo necesita seleccionar fecha inicio</p>
 
                 </form>
             </div>

@@ -18,7 +18,7 @@ $_SESSION["Cajero"]=$Cajero;
 
 if (isset($_POST['btn_ingresar'])) {
     
-    if($Cajero->verificarUsuario()){
+    if($Cajero->verificarCajero()){
         
       require_once __DIR__ . '/../../vista/VistasCajero/CajeroInterfaz.php';
     }else{
