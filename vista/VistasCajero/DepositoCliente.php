@@ -58,7 +58,7 @@
                 </div> 
                 <div class="form-group">
                     <input type="radio" name="moneda" value="Dolares"> Dolares  
-                    <input type="radio" name="moneda" value="Bolivianos"> Bolivianos <br>
+                    <input type="radio" name="moneda" value="Bolivianos" checked> Bolivianos <br>
                     
                 </div>
                     <center>

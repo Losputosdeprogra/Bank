@@ -44,7 +44,7 @@ class CajeroModelo  extends UsuarioModelo{
         
         $sql = "INSERT INTO `transacciones`( `fecha`, `hora`, `tipo`, `cuenta_origen`, `cuenta_destino`, `monto`, `id_caja`, `id_cajero`, `id_sucursal`) VALUES(?,?,?,?,?,?,?,?,?);";
             $stmt = $conexion->prepare($sql);
-            $stmt->bind_param('sssiiiiii', $transaccion->fecha(), $transaccion->hora(),$transaccion->tipo(), $transaccion->cuenta_origen(),$transaccion->cuenta_destino() ,$transaccion->monto(),$transaccion->id_caja(),$transaccion->id_cajero(),$transaccion->id_sucursal());
+            $stmt->bind_param('sssiidiii', $transaccion->fecha(), $transaccion->hora(),$transaccion->tipo(), $transaccion->cuenta_origen(),$transaccion->cuenta_destino() ,$transaccion->monto(),$transaccion->id_caja(),$transaccion->id_cajero(),$transaccion->id_sucursal());
             if ($stmt->execute()) {
                 $conexion->close();
                 return(true);
@@ -109,7 +109,7 @@ class CajeroModelo  extends UsuarioModelo{
                 $a4=$cuenta->id_cuenta(); 
         
         
-        $stmt->bind_param('issii',$a0,$a1,$a2,$a3,$a4 );
+        $stmt->bind_param('dssii',$a0,$a1,$a2,$a3,$a4 );
           
         
         if ($stmt->execute()) {
@@ -170,6 +170,7 @@ class CajeroModelo  extends UsuarioModelo{
          //moneda igual a dolares
          ///Conversion de Bolivianos a Dolares;
          }else{
+             
              $monto=$monto*(1/7);
              return $monto;
          }
@@ -197,7 +198,7 @@ class CajeroModelo  extends UsuarioModelo{
                 $a6=$transaccion->id_caja();
                 $a7=$transaccion->id_cajero();
                 $a8=$transaccion->id_sucursal();
-        $stmt->bind_param('sssiiiiii',$a0,$a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8);
+        $stmt->bind_param('sssiidiii',$a0,$a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8);
           
         /////////////
         if ($stmt->execute()) {
