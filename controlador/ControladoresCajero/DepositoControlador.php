@@ -21,6 +21,7 @@ $hora   = date("H:i:s");                      //HORA ACTUAL
 $idcajero=$cajero->getIdCliente();         ///ID DEL CAJERO
   ///FFFFAAAAAAALLLLLTAAAAAA///////////////                                /////FALTA ID SUCURSAL
  
+
  ////////////SQL/////////////////////
 
 
@@ -35,6 +36,10 @@ $row= ConectarBD::send("bd_usuario",$sql);
 
 $idcaja=$row->fetch_row()[0];               ////ID DE LA CAJA 
 
+$sql = "SELECT id_sucursal FROM cajas WHERE id_caja='$idcaja';";
+$row= ConectarBD::send("bd_banco", $sql);
+$id_sucursal=$row->fetch_row()[0];
+
 $transaccion=new TransaccionModelo();
 
 $transaccion->cuenta_destino($cuenta);
@@ -45,12 +50,18 @@ $transaccion->monto($monto);
 $transaccion->tipo($tipo);
 $transaccion->id_caja($idcaja);
 $transaccion->id_cajero($idcajero);
-$transaccion->id_sucursal(1);
+$transaccion->id_sucursal($id_sucursal);
 
 if($cajero->Deposito($transaccion, $moneda)){
+    if($_SESSION["id_cliente"]){
     $cliente = new ClienteModelo();
     $cliente->setIdCliente($_SESSION["id_cliente"]);
     Mostrar::Cuentas($cliente->ObtenerCuentas());
+    
+    }else{
+        $sql="SELECT id_trans, fecha, hora, tipo, cuenta_origen, cuenta_destino, monto FROM transacciones ORDER BY id_trans DESC LIMIT 1";
+    Mostrar::Extracto(ConectarBD::send('bd_finanzas', $sql));
+    }
 }else {
     echo"<center><br><br><br>No se pudo realizar</center>";
 }

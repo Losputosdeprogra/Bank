@@ -40,7 +40,7 @@
 
             <center><h1>Deposito de un cliente del banco</h1></center>
 
-            <form method="POST" action="../../controlador/ControladoresCajero/DepositoClienteControlador.php" >
+            <form method="POST" action="../../controlador/ControladoresCajero/DepositoControlador.php" >
 
                 <strong>Numero de Cuenta:   
                 

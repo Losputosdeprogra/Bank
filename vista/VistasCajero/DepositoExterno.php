@@ -27,7 +27,7 @@
 
             <center><h1>Deposito externo</h1></center>
 
-            <form method="POST" action="../../controlador/ControladoresCajero/DepositoExternoControlador.php" >
+            <form method="POST" action="../../controlador/ControladoresCajero/DepositoControlador.php" >
 
                 
                 <div class="form-group">

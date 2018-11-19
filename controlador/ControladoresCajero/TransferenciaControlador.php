@@ -37,6 +37,12 @@ $row= ConectarBD::send("bd_usuario",$sql);
 
 $idcaja=$row->fetch_row()[0];               ////ID DE LA CAJA 
 
+
+$sql = "SELECT id_sucursal FROM cajas WHERE id_caja='$idcaja';";
+$row= ConectarBD::send("bd_banco", $sql);
+$id_sucursal=$row->fetch_row()[0];
+
+
 $transaccion=new TransaccionModelo();
 
 $transaccion->cuenta_destino($destino);
@@ -45,7 +51,7 @@ $transaccion->fecha($fecha);
 $transaccion->hora($hora);
 $transaccion->id_caja($idcaja);
 $transaccion->id_cajero($idcajero);
-$transaccion->id_sucursal(1);
+$transaccion->id_sucursal($id_sucursal);
 $transaccion->monto($monto);
 $transaccion->tipo($tipo);
 
