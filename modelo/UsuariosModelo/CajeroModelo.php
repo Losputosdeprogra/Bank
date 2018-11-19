@@ -220,25 +220,21 @@ class CajeroModelo  extends UsuarioModelo{
          
          if($transaccion->monto()>0){
             //////Construccion de las cuentas
-            $origen= $this->ObtenerCuenta($transaccion->cuenta_origen());
+            $origen = $this->ObtenerCuenta($transaccion->cuenta_origen());   //Construye unobjeto cuenta
             
             
-            $origen->getId_cliente();
-            $origen->getMoneda();
-            $origen->getMonto();
-            $origen->getTipo();
-            
-            $monto=$transaccion->monto();
-            $monto=$this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
+            $monto  =   $transaccion->monto();
+            $monto  =   $this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
             
             $transaccion->monto($monto);
             
-            if($monto<=$origen->getMonto()){
+            if( $monto <= $origen->getMonto() ){
                 
                 $monto=$origen->getMonto()-$monto;
                 $origen->Monto($monto);
                 $this->update_cuenta($origen);
                 $this->registrartransaccion($transaccion);
+                
                 return true;
             }else {
                 return false;
@@ -253,10 +249,6 @@ class CajeroModelo  extends UsuarioModelo{
          if($transaccion->monto()>0){
 
             $origen= $this->ObtenerCuenta($transaccion->cuenta_destino());
-            $origen->getId_cliente();
-            $origen->getMoneda();
-            $origen->getMonto();
-            $origen->getTipo();
             
             $monto=$transaccion->monto();
             $monto=$this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
@@ -282,35 +274,22 @@ class CajeroModelo  extends UsuarioModelo{
          
          if($transaccion->monto()>0){
              
-            $origen= $this->ObtenerCuenta($transaccion->cuenta_origen());
-            $destino= $this->ObtenerCuenta($transaccion->cuenta_destino());
-            $origen->getId_cliente();
-            $origen->getMoneda();
-            $origen->getMonto();
-            $origen->getTipo();
+            $origen  = $this->ObtenerCuenta($transaccion->cuenta_origen());
+            $destino = $this->ObtenerCuenta($transaccion->cuenta_destino());
             
-            
-            $destino->getId_cliente();
-            $destino->getMoneda();
-            $destino->getMonto();
-            $destino->getTipo();
-            
-            $monto=$transaccion->monto();
-            $monto=$this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
+            $monto  =   $transaccion->monto();
+            $monto  =   $this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
             $transaccion->monto($monto);
-            
-            if($monto<=$origen->getMonto()){
-                        $nuevoorigen=$origen->getMonto()-$monto;
-                      
-                       
-                       $origen->Monto($nuevoorigen);
-                       
-                       
-                       
+            $moneda=$origen->getMoneda();
+            if($monto <= $origen->getMonto()){
+                
+                $nuevoorigen=$origen->getMonto()-$monto;
+                $origen->Monto($nuevoorigen);
+                
             }else {
                 return false;
-                
             }
+            
             $monto=$this->VerificarMoneda( $moneda,$destino->getMoneda(), $monto);
             
             if($monto>0){
@@ -325,7 +304,6 @@ class CajeroModelo  extends UsuarioModelo{
             return true;
         }else{
             return false;
-            
         } 
     }
 }

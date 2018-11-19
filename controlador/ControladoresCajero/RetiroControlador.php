@@ -56,6 +56,7 @@ $transaccion->tipo($tipo);
 //////////////////////////////////////////////////////////
 
 if($cajero->Retiro($transaccion, $moneda)){
+    
     $cliente = new ClienteModelo();
     $cliente->setIdCliente($_SESSION["id_cliente"]);
     Mostrar::Cuentas($cliente->ObtenerCuentas());
