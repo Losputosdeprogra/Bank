@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../modelo/FinanzasModelo/TransaccionModelo.php';
 require_once __DIR__ . '/../../modelo/FinanzasModelo/CuentaModelo.php';
 require_once __DIR__ . '/../../modelo/UsuariosModelo/CajeroModelo.php';
 require_once __DIR__ . '/../../modelo/UsuariosModelo/ClienteModelo.php';
-require_once __DIR__ . '/../../modelo/Mostra.php';
+require_once __DIR__ . '/../../modelo/Mostrar.php';
 /////////DEFINE LA ZONA HORARIA
 date_default_timezone_set("America/La_Paz");
 

@@ -19,10 +19,6 @@ $fecha  = date("Y-m-d");                      //FECHA ACTUAL
 $hora   = date("H:i:s");                      //HORA ACTUAL
 
 $idcajero=$cajero->getIdCliente();         ///ID DEL CAJERO
-  ///FFFFAAAAAAALLLLLTAAAAAA///////////////                                /////FALTA ID SUCURSAL
- 
-
- ////////////SQL/////////////////////
 
 
 $sql = "SELECT id_cliente FROM cuentas WHERE id_cuenta='$cuenta';";
@@ -53,14 +49,14 @@ $transaccion->id_cajero($idcajero);
 $transaccion->id_sucursal($id_sucursal);
 
 if($cajero->Deposito($transaccion, $moneda)){
-    if($_SESSION["id_cliente"]){
-    $cliente = new ClienteModelo();
-    $cliente->setIdCliente($_SESSION["id_cliente"]);
-    Mostrar::Cuentas($cliente->ObtenerCuentas());
-    
+    if($_SESSION['nit_ci'] != 0){
+        
+        $cliente = new ClienteModelo();
+        $cliente->setIdCliente($_SESSION["id_cliente"]);
+        Mostrar::Cuentas($cliente->ObtenerCuentas());
     }else{
         $sql="SELECT id_trans, fecha, hora, tipo, cuenta_origen, cuenta_destino, monto FROM transacciones ORDER BY id_trans DESC LIMIT 1";
-    Mostrar::Extracto(ConectarBD::send('bd_finanzas', $sql));
+        Mostrar::Extracto(ConectarBD::send('bd_finanzas', $sql));
     }
 }else {
     echo"<center><br><br><br>No se pudo realizar</center>";

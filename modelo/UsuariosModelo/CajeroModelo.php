@@ -234,9 +234,10 @@ class CajeroModelo  extends UsuarioModelo{
                 $origen->Monto($monto);
                 $this->update_cuenta($origen);
                 $this->registrartransaccion($transaccion);
-                
+
                 return true;
             }else {
+                echo "<br><br><br><br><center>Fondos insuficientes";
                 return false;
             }           
         }else{
@@ -287,6 +288,7 @@ class CajeroModelo  extends UsuarioModelo{
                 $origen->Monto($nuevoorigen);
                 
             }else {
+                echo "<br><br><br><br><center>Fondos insuficientes";
                 return false;
             }
             

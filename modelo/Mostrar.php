@@ -62,11 +62,17 @@ class Mostrar {
         echo "<th>Cuenta destino</th>";
         echo "<th>Monto</th>";
         echo "<th>id Caja</th>";
-        echo "<th>id Cajero</th>";
-        echo "<th>id Sucursal</th>";
+        echo "<th>Cajero (id)</th>";
+        echo "<th>Sucursal (id)</th>";
         echo "</tr>";
 
         while ($fila = $reporte->fetch_row()) {
+            
+            $sql1 = "SELECT nombre from sucursales WHERE id_sucursal = $fila[9]";
+            $nombreSucursal = ConectarBD::send("bd_banco", $sql1)->fetch_row()[0];
+            
+            $sql2 = "SELECT nombre from cajeros WHERE id_Cajero = $fila[8]";
+            $nombreCajero = ConectarBD::send("bd_usuario", $sql2)->fetch_row()[0];
             echo "<tr>";
             echo "<td> <center>".$fila[0]."</center></td>"; 
             echo "<td> <center>".$fila[1]."</td>";
@@ -76,8 +82,8 @@ class Mostrar {
             echo "<td> <center>".$fila[5]."</td>";
             echo "<td> <center>".$fila[6]."</td>";
             echo "<td> <center>".$fila[7]."</td>";
-            echo "<td> <center>".$fila[8]."</td>";
-            echo "<td> <center>".$fila[9]."</td>";
+            echo "<td> <center>".$nombreCajero."($fila[8])</td>";
+            echo "<td> <center>".$nombreSucursal."($fila[9])</td>";
             echo "</tr>";
         }
         echo " </table>";

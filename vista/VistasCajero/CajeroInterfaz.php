@@ -16,7 +16,7 @@
 
 
     <body>
-6
+
         <div class="row">
             <div class="col-md-4"></div>
 
@@ -35,7 +35,7 @@
                             
                             <div class="form-group">
                                 <label for="nit_ci" >C.I. o NIT del cliente: </label><br>
-                                <input type="number" name="nit_ci" class="form-control">
+                                <input type="number" name="nit_ci" class="form-control" value="0">
                             </div>
                         
                         <center>

@@ -7,6 +7,7 @@ session_start();
 
 
 $nit  = $_POST['nit_ci'];
+$_SESSION['nit_ci'] = $nit;
 $Cliente = new ClienteModelo();
 
     
