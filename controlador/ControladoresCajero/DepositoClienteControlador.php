@@ -5,11 +5,11 @@ require_once __DIR__ . '/../../modelo/FinanzasModelo/TransaccionModelo.php';
 require_once __DIR__ . '/../../modelo/FinanzasModelo/CuentaModelo.php';
 require_once __DIR__ . '/../../modelo/UsuariosModelo/CajeroModelo.php';
 require_once __DIR__ . '/../../modelo/UsuariosModelo/ClienteModelo.php';
-/////////DEFINE LA ZONA HORARIA
+require_once __DIR__ . '/../../modelo/Mostrar.php';
 date_default_timezone_set("America/La_Paz");
 
 session_start();
-$cajero=$_SESSION['Cajero'];
+$cajero = $_SESSION['Cajero'];
 
 $tipo   = "Deposito";                         //TIPO DE TRANSACCION
 $monto  = $_POST['monto'];                    //MONTO
@@ -50,29 +50,7 @@ $transaccion->id_sucursal(1);
 if($cajero->Deposito($transaccion, $moneda)){
     $cliente = new ClienteModelo();
     $cliente->setIdCliente($_SESSION["id_cliente"]);
-    MostrarCuentas($cliente->ObtenerCuentas());
+    Mostrar::Cuentas($cliente->ObtenerCuentas());
 }else {
     echo"<center><br><br><br>No se pudo realizar</center>";
 }
-
-
-function MostrarCuentas($cuentas="") {
-    echo "<table width='75%' border='5' align='center' cellspacing='5' bordercolor='#000000' bgcolor='#FFCC99'>";
-    echo "<caption><h1>Lista de tus cuentas</caption>";
-    echo "<tr>";
-    echo "<th>Id_cuentas</th>";
-    echo "<th>Monto</th>";
-    echo "<th>Tipo</th>";
-    echo "<th>Moneda</th>";
-    echo "</tr>";
-    while ($fila = $cuentas->fetch_row()) {
-        echo "<tr>";
-        echo "<td> <center>".$fila[0]."</center></td>"; 
-        echo "<td> <center>".$fila[1]."</td>";
-        echo "<td> <center>".$fila[2]."</td>";
-        echo "<td> <center>".$fila[3]."</td>";
-        
-        echo "</tr>";
-    }
-    echo " </table>";
-    }

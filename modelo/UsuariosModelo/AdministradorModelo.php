@@ -29,8 +29,11 @@ public function crear_sucursal($nombre,$id_dpto)
     }
     
     public function asignar_caja($nombre, $id_caja){
-        $sql = "UPDATE cajeros SET id_caja = $id_caja  WHERE nombre= '$nombre'";
-        return ConectarBD::send("bd_usuario", $sql);     
+        $sql = "UPDATE cajeros SET id_caja = 0 WHERE id_caja = $id_caja";
+        ConectarBD::send("bd_usuario", $sql);
+        
+        $sql1 = "UPDATE cajeros SET id_caja = $id_caja  WHERE nombre= '$nombre'";
+        return ConectarBD::send("bd_usuario", $sql1);     
     }
     
     public function ObtenerReporteBanco()
@@ -61,6 +64,26 @@ public function crear_sucursal($nombre,$id_dpto)
         return ConectarBD::send("bd_finanzas", $sql);
     }
     
+    public function ListarCajas($id_sucursal) {
+        $sql = "SELECT id_caja,numero FROM cajas   WHERE id_sucursal = $id_sucursal";
+        return ConectarBD::send("bd_banco", $sql);
+    }
+    
+    public function ListarSucursales($id_departamento) {
+        $sql = "SELECT id_sucursal,nombre FROM sucursales WHERE id_dpto = $id_departamento";
+        return ConectarBD::send("bd_banco", $sql);
+    }
+    
+    public function ListarCajeros($sucursal) {
+
+        $sql = "SELECT c.id_cajero,c.nombre,c.telefono,c.email,c.id_caja,cajas.id_sucursal FROM bd_usuario.cajeros c, cajas WHERE c.id_caja = cajas.id_caja AND cajas.id_sucursal = $sucursal";
+        return ConectarBD::send("bd_banco", $sql);
+    }
+    public function ListarCajerosInacitivos() {
+
+        $sql = "SELECT id_cajero,nombre,telefono,email,id_caja FROM cajeros  WHERE id_caja = 0 ";
+        return ConectarBD::send("bd_usuario", $sql);
+    }
 }    
 
 

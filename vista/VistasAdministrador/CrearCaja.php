@@ -1,4 +1,14 @@
 <html>
+    <?php
+$listadesucursales="";
+$sql = "select id_sucursal,nombre from sucursales ";
+$rows = ConectarBD::send("bd_banco", $sql);
+while($filas= $rows->fetch_row()){
+        $listadesucursales .= " <option value='$filas[0]'>$filas[0] ($filas[1]) </option>";
+    }
+
+
+?>
     <head>
        <meta charset="UTF-8">
        <title>BancoPX<</title>
@@ -32,8 +42,12 @@
                     </div>    
 
                     <div class="form-group">
-                        <label for="id_sucursal">Id_sucursal </label>
-                        <input type="text" name="id_sucursal" class="form-control" id="id_sucursal">
+                        <label for="combobox">Id_sucursal </label>
+                        <select  name="id_sucursal" class="form-control" id="id_sucursal">
+                         <?php 
+                                echo $listadesucursales ;
+                            ?>
+                        </select>
                     </div>  
 
 

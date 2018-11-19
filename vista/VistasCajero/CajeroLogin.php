@@ -1,5 +1,15 @@
 <!DOCTYPE html>
-
+<?php
+    require_once __DIR__ . '/../../modelo/ConectarBD.php';
+    $CajerosActivos = "";
+    
+    $sql = "SELECT nombre from cajeros WHERE id_caja != 0";
+    $rows = ConectarBD::send('bd_usuario', $sql);
+    while($filas= $rows->fetch_row()){
+        $CajerosActivos .= " <option value='$filas[0]'>".$filas[0]."</option>";
+    }
+    //Aqui estamos consiguiendo los numeros de cuenta que van en el combobox
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -31,7 +41,11 @@
 
                 <div class="form-group">
                     <label for="nombre">Nombre: </label>
-                    <input type="text" name="nombre" class="form-control" id="nombre">
+                    <select name="nombre" class="form-control" id="nombre">
+                            <?php 
+                                echo $CajerosActivos;
+                            ?>
+                        </select>
                 </div>    
 
                 <div class="form-group">
@@ -43,7 +57,7 @@
                 <center>
 
                   <input type="submit" value="Ingresar" class="btn btn-primary" name="btn_ingresar">
-                  
+                  <br><br><center><p>*Solo aparecen los nombre de los cajeros activos</p></center>
                 </center>
 
             </form>

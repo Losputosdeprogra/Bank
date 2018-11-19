@@ -11,8 +11,8 @@ class UsuarioModelo {
     
     private $BD = "bd_usuario";
 
-    public function __construct($nom="",$tel="",$em="",$cont="") {
-        $this->id_cliente    = 0;
+    public function __construct($nom="",$tel=0,$em="",$cont="") {
+        $this->id_cliente   = 0;
         $this->nombre       = $nom;
         $this->telefono     = $tel;
         $this->email        = $em;
@@ -24,25 +24,25 @@ class UsuarioModelo {
     public function getIdCliente() {
         return $this->id_cliente;
     }
-    public function setNombre($nom) {
+    public function setNombre($nom="") {
         $this->nombre = $nom;
     }
     public function getNombre(){
         return $this->nombre;
     }
-    public function setTelefono($tel) {
+    public function setTelefono($tel=0) {
         $this->telefono = $tel;
     }
     public function getTelefono() {
         return $this->telefono;
     }
-    public function setEmail($email) {
+    public function setEmail($email="") {
         $this->email = $email;
     }
     public function getEmail() {
         return $this->email;
     }
-    public function setContrasena($cont) {
+    public function setContrasena($cont="") {
         $this->contrasena = $cont;
     }
     public function getContrasena() {
@@ -65,7 +65,7 @@ class UsuarioModelo {
     
     protected function Extracto($fi,$ff,$idCuenta) {
         
-        $sql = "SELECT fecha,hora,tipo,cuenta_origen,cuenta_destino,monto FROM transacciones "
+        $sql = "SELECT id_trans,fecha,hora,tipo,cuenta_origen,cuenta_destino,monto FROM transacciones "
                 . "WHERE (cuenta_origen = $idCuenta OR cuenta_destino = $idCuenta) AND (fecha >='$fi' AND fecha<='$ff');";
         return ConectarBD::send("bd_finanzas",$sql);
     }

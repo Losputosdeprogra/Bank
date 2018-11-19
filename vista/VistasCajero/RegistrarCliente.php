@@ -30,13 +30,23 @@
 
                 <legend>Ingresa los datos del cliente</legend>
                 <div class="form-group">
-                    <label for="nombre">Nombre: </label>
+                    <label for="nombre">Nombre:*  </label>
                     <input type="text" name="nombre" class="form-control" id="nombre">
                 </div>  
                 
                 <div class="form-group">
+                    <label for="contrasena">Contraseña:* </label>
+                    <input type="text" name="contrasena" class="form-control" id="contrasena">
+                </div>        
+                
+                <div class="form-group">
+                    <label for="id_nit">Nit o carnet:* </label>
+                    <input type="number" name="id_nit" class="form-control" id="id_nit">
+                </div> 
+                
+                <div class="form-group">
                     <label for="telefono">Telefono: </label>
-                    <input type="text" name="telefono" class="form-control" id="telefono">
+                    <input type="number" name="telefono" class="form-control" id="telefono" value=0>
                 </div> 
                 
                 <div class="form-group">
@@ -49,15 +59,6 @@
                     <input type="text" name="direccion" class="form-control" id="direccion">
                 </div> 
                 
-                <div class="form-group">
-                    <label for="id_nit">Nit o carnet: </label>
-                    <input type="text" name="id_nit" class="form-control" id="id_nit">
-                </div> 
-                
-                <div class="form-group">
-                    <label for="contrasena">Contraseña: </label>
-                    <input type="number" name="contrasena" class="form-control" id="c">
-                </div>        
                 
                 <legend>Ingresa los datos de la primera cuenta del cliente</legend>
                 

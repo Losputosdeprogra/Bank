@@ -44,19 +44,21 @@ $Cliente = new ClienteModelo();
         }else{
         echo "<br><br><br><br><center> Debe introducir el nit del cliente</center>";
         }
+        
     }
 
     if (isset($_POST['btn_Registrar_cliente'])) {
 
         require_once constant("direccion").'RegistrarCliente.php';
-
+        
     }
 
     if(isset($_POST['btn_deposito'])){
         if($nit!=0){
-            require_once constant("direccion").'DepositoC.php';
+            $_SESSION["id_cliente"] = $Cliente->ObtenerIDconNit($nit);
+            require_once constant("direccion").'DepositoCliente.php';
         }else{
-            require_once constant("direccion").'Deposito.php';
+            require_once constant("direccion").'DepositoExterno.php';
         }
     }
 

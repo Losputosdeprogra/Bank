@@ -13,7 +13,7 @@ $Cajero = new CajeroModelo();
 $Cajero->setNombre($nombre);
 $Cajero->setContrasena($contrasena);
 
-$_SESSION["Cajero"]=$Cajero;
+$_SESSION["Cajero"] = $Cajero;
 
 
 if (isset($_POST['btn_ingresar'])) {

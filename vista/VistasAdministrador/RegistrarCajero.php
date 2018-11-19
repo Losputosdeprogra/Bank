@@ -1,4 +1,11 @@
 <html>
+    <?php
+$listacajasdisponibles;
+$sql = " ";
+//SELECT cajas.id_caja,c.id_caja from cajas, bd_usuario.cajeros c WHERE cajas.id_caja = c.id_caja
+ 
+?>
+    
     <head>
        <meta charset="UTF-8">
        <title>BancoPX<</title>
@@ -46,11 +53,12 @@
                         <input type="text" name="contrasena" class="form-control" id="contrasena">
                     </div>  
                     
+                    <!--
                     <div class="form-group">
                         <label for="id_caja">Id_Caja </label>
                         <input type="text" name="id_caja" class="form-control" id="id_caja">
                     </div>  
-                    
+                    -->
 
 
                     <center>

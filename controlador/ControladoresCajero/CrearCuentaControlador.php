@@ -3,6 +3,8 @@ session_start();
 require_once __DIR__ . '/../../modelo/UsuariosModelo/CajeroModelo.php';
 require_once __DIR__ . '/../../modelo/UsuariosModelo/ClienteModelo.php';
 require_once __DIR__ . '/../../modelo/FinanzasModelo/CuentaModelo.php';
+require_once __DIR__ . '/../../modelo/Mostrar.php';
+
 $id_cliente    = $_SESSION["id_cliente"];
 $Tipo_cuenta   = $_POST['tipo_cuenta'];
 $Moneda        = $_POST['moneda'];
@@ -17,7 +19,7 @@ if (isset($_POST['btn_Crear_cuenta'])) {
         if ($Cajero->CrearCuenta($cuenta)){
             $Cliente = new ClienteModelo();
             $Cliente->setIdCliente($id_cliente);
-            MostrarCuentas($Cliente->ObtenerCuentas());
+            Mostrar::Cuentas($Cliente->ObtenerCuentas());
         }else{
             echo "Algo salio mal, no se creo la cuenta";
         }
@@ -26,24 +28,5 @@ if (isset($_POST['btn_Crear_cuenta'])) {
     }
 }
 
-function MostrarCuentas($cuentas){
-    echo "<table width='75%' border='5' align='center' cellspacing='5' bordercolor='#000000' bgcolor='#FFCC99'>";
-    echo "<caption><h1>Lista de cuentas del cliente</caption>";
-    echo "<tr>";
-    echo "<th>Id de la cuenta</th>";
-    echo "<th>Tipo de cuenta</th>";
-    echo "<th>Moneda</th>";
-    echo "<th>Monto de la ceunta</th>";
-    echo "</tr>";
-    while ($fila = $cuentas->fetch_row()) {
-        echo "<tr>";
-        echo "<td> <center>".$fila[0]."</center></td>"; 
-        echo "<td> <center>".$fila[1]."</td>";
-        echo "<td> <center>".$fila[2]."</td>";
-        echo "<td> <center>".$fila[3]."</td>";
-        echo "</tr>";
-    }
-    echo " </table>";
-}
- 
+
  

@@ -71,7 +71,6 @@
                     </center>
                     
                     <br><p>*Si decea hacer un extracto de un solo dia solo necesita seleccionar fecha inicio</p>
-
                 </form>
             </div>
             <!-- TERMINA LA COLUMNA -->

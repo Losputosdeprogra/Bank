@@ -25,21 +25,38 @@
                 <center><h1>Interfaz de administrador</h1></center>
                 
                 <?php 
-                    print "<h2><br><br><br><p>Bienvenido $_SESSION[nombre]</h2><br>";
+                    print "<h2><br><p>Bienvenido $_SESSION[nombre]</h2><br>";
                 ?>
 
                 <form method="POST" action="../../controlador/ControladoresAdministrador/AdministradorInterfazControlador.php" >
 
                     <fieldset>
-                        <legend>¿Qué deceas hacer?</legend>
+                        <legend>Administrar banco:</legend>
                         <center>
-                            <input type="submit" value="Crear sucursal" class="btn btn-primary" name="btn_Crear_Sucursal"></br></br>
-                            <input type="submit" value="Crear caja" class="btn btn-success" name="btn_Crear_Caja"></br></br>
-                            <input type="submit" value="Registrar cajero" class="btn btn-danger" name="btn_Registrar_Cajero"></br></br>
-                            <input type="submit" value="Asignar cajero" class="btn btn-info" name="btn_Asignar_Cajero"></br></br>
-                            <input type="submit" value="Reporte" class="btn btn-primary" name="btn_Reporte"></br></br>
-                           
+                            <input type="submit" value="Crear sucursal" class="btn btn-primary" name="btn_Crear_Sucursal">
+                            <input type="submit" value="Crear caja" class="btn btn-success" name="btn_Crear_Caja"></br><br>
                         </center>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Administrar personal:</legend>
+                        <center>
+                        <input type="submit" value="Registrar cajero" class="btn btn-danger" name="btn_Registrar_Cajero">
+                        <input type="submit" value="Asignar cajero" class="btn btn-info" name="btn_Asignar_Cajero"></br>
+                        </center>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <br>
+                        <legend>Realizar listados de:</legend>
+                        <center>
+                            <input type="radio" name="Listar" value="Cajeros" checked>Cajeros
+                            <input type="radio" name="Listar" value="Cajas">Cajas
+                            <input type="radio" name="Listar" value="Sucursales">Sucursales
+                            <br>
+                            <input type="submit" value="Lista" class="btn btn-danger" name="btn_Realizar_Lista">
+                        </center>
+                        <br>
+                        <center><input type="submit" value="Reporte de transacciones" class="btn btn-primary" name="btn_Reporte"></br></br>
                     </fieldset>
                 </form>
             </div>

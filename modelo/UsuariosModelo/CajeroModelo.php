@@ -54,10 +54,41 @@ class CajeroModelo  extends UsuarioModelo{
             } 
         
     }
+    public function RegistrarNuevoCliente($Cliente, $TipoCuenta,$moneda) {
+
+        $nombre     = $Cliente->getNombre();
+        $telefono   = $Cliente->getTelefono();
+        $email      = $Cliente->getEmail();
+        $direccion  = $Cliente->getDireccion();
+        $contrasena = $Cliente->getContrasena();
+        $nit        = $Cliente->getNit();
+                
+        $sql = "SELECT count(nit_ci) from clientes WHERE nit_ci = $nit";
+        
+        if( ConectarBD::send("bd_usuario", $sql)->fetch_row()[0] == 0){   //Verificamos que no exista otro usuario con el mismo C.I
+        
+            $sql1 = "INSERT INTO clientes( nombre, telefono, email, direccion, contrasena, nit_ci) "
+            . "VALUES ('$nombre', $telefono , '$email', '$direccion' ,'$contrasena' , $nit)";
+
+            if(ConectarBD::send("bd_usuario", $sql1)){
+
+                $sql2 = "SELECT MAX(id_cliente) from clientes ";
+                $idCliente = ConectarBD::send("bd_usuario", $sql2)->fetch_row()[0];  //Obtenemos el id del cliente que acabamos crear
+
+                $sql3 = "INSERT INTO cuentas(monto, tipo, moneda, id_cliente) VALUES ( 0 , '$TipoCuenta','$moneda',$idCliente )";
+                return ConectarBD::send("bd_finanzas", $sql3);
+            } else {
+                return false;
+            }
+        }else{
+            echo "<br><br><br><br><center> Ya existe un cliente registrado con ese C.I, no se puede completar el registro";
+            return false;
+        }
+    }
     
     public function ObtenerCuenta($idcuenta) {
-        $sql = "SELECT * FROM cuentas WHERE id_cuenta='$idcuenta';";
-        $rows= ConectarBD::send("bd_finanzas",$sql);
+        $sql  = "SELECT * FROM cuentas WHERE id_cuenta='$idcuenta';";
+        $rows = ConectarBD::send("bd_finanzas",$sql);
         
         $fila = $rows->fetch_row();
         $cuenta=new CuentaModelo();

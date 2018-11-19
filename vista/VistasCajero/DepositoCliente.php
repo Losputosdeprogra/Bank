@@ -5,9 +5,10 @@
 
     $ListaDeCuentas = "";
     
-    $idCliente = $_SESSION['id_cliente'];
+    $idCliente = $_SESSION["id_cliente"];
     $sql = "SELECT id_cuenta from cuentas WHERE id_cliente = $idCliente";
     $rows = ConectarBD::send("bd_finanzas", $sql);
+    
     while($filas= $rows->fetch_row()){
         $ListaDeCuentas .= " <option value='".$filas[0]."'>".$filas[0]."</option>";
     }
@@ -39,7 +40,7 @@
 
             <center><h1>Deposito de un cliente del banco</h1></center>
 
-            <form method="POST" action="../../controlador/ControladoresCajero/DepositoControlador.php" >
+            <form method="POST" action="../../controlador/ControladoresCajero/DepositoClienteControlador.php" >
 
                 <strong>Numero de Cuenta:   
                 

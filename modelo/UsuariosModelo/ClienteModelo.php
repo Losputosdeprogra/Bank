@@ -5,9 +5,16 @@ require_once __DIR__ . '/UsuarioModelo.php';
 class ClienteModelo extends UsuarioModelo{
 
     private $direccion;
+    private $nit;
     private $TablaCorrespondiente = "clientes";
     
-    public function setDireccion($direc) {
+    public function setNit($nit=0) {
+        $this->nit = $nit;
+    }
+    public function getNit(){
+        return $this->nit;
+    }
+    public function setDireccion($direc = "") {
         $this->direccion = $direc;
     }
     public function getDireccion(){
@@ -30,10 +37,17 @@ class ClienteModelo extends UsuarioModelo{
         return parent::Extracto("0-0-0","3000-0-0",$id);
     }
     public function ObtenerCuentas() {
-        $id_cliente = $this->getIdCliente();
-        $sql ="SELECT * from cuentas WHERE id_cliente = $id_cliente;";
-        $cuentas = ConectarBD::send("bd_finanzas", $sql);
         
-        return $cuentas;
+        $id_cliente = $this->getIdCliente();
+        $nit        = $this->getNit();
+        
+        if($id_cliente == ""){
+            $sql = "SELECT id_cliente from clientes WHERE nit_ci = $nit";
+            $id_cliente = ConectarBD::send('bd_usuario', $sql)->fetch_row()[0];
+        }
+        
+        $sql = "SELECT * from cuentas WHERE id_cliente = $id_cliente";
+    
+        return ConectarBD::send("bd_finanzas", $sql);
     }
 }                                                                                    

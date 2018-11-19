@@ -30,24 +30,31 @@
                 <form method="POST" action="../../controlador/ControladoresCajero/CajeroInterfazControlador.php" >
 
                     <fieldset>
-                        <legend>Registra los datos del cliente</legend>
+                        <legend>Operaciones con cuentas</legend>
 
                             
                             <div class="form-group">
-                                <label for="nit_ci" >C.I. / NIT: </label><br>
-                                <input type="number" name="nit_ci" class="form-control"><br><br>
+                                <label for="nit_ci" >C.I. o NIT del cliente: </label><br>
+                                <input type="number" name="nit_ci" class="form-control">
                             </div>
                         
                         <center>
-                            <input type="submit" value="Realizar extracto" class="btn btn-primary" name="btn_Realizar_extracto"></br></br>
+                            <input type="submit" value="Realizar extracto a un cliente" class="btn btn-primary" name="btn_Realizar_extracto"></br></br>
                             <input type="submit" value="Deposito" class="btn btn-success" name="btn_deposito">  
                             <input type="submit" value="Retiro" class="btn btn-success" name="btn_retiro">  
                             <input type="submit" value="Transferencia" class="btn btn-success" name="btn_transferencia"><br><br>
+                        </center> 
+                        <p>*Para hacer un deposito a cualquier cuenta del banco no llene el campo C.I</p><br>
                             
+                        <legend>Operaciones generales</legend>
+                        <center>
                             <input type="submit" value="Crear cuenta nueva" class="btn btn-danger" name="btn_Crear_cuenta"></br></br>
                             <input type="submit" value="Registrar nuevo cliente" class="btn btn-info" name="btn_Registrar_cliente">
-                        
                         </center>
+                        
+                        
+                        <br>
+                        
                     </fieldset>
                 </form>
             </div>
