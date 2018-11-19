@@ -65,7 +65,7 @@ class UsuarioModelo {
     
     protected function Extracto($fi,$ff,$idCuenta) {
         
-        $sql = "SELECT id_trans,fecha,hora,tipo,cuenta_origen,cuenta_destino,monto FROM transacciones "
+        $sql = "SELECT id_trans,fecha,hora,tipo,cuenta_origen,cuenta_destino,monto,moneda FROM transacciones "
                 . "WHERE (cuenta_origen = $idCuenta OR cuenta_destino = $idCuenta) AND (fecha >='$fi' AND fecha<='$ff');";
         return ConectarBD::send("bd_finanzas",$sql);
     }

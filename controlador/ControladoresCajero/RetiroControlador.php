@@ -23,7 +23,6 @@ $cuenta=$_POST['cuentas'];                 ////CUENTA DEL CLIENTE
 $fecha=date("Y-m-d");                      ///FECHA ACTUAL
 $hora=date("H:i:s");                        ///HORA ACTUAL
  $idcajero=$cajero->getIdCliente();         ///ID DEL CAJERO
-  ///FFFFAAAAAAALLLLLTAAAAAA///////////////                                /////FALTA ID SUCURSAL
  
  ////////////SQL/////////////////////
 $tabla= $cajero->Tabla();                   ////TABLA PARA LA BASE DE DATOS
@@ -53,6 +52,7 @@ $transaccion->id_cajero($idcajero);
 $transaccion->id_sucursal($id_sucursal);
 $transaccion->monto($monto);
 $transaccion->tipo($tipo);
+$transaccion->moneda($moneda);
 //////////////////////////////////////////////////////////
 
 if($cajero->Retiro($transaccion, $moneda)){

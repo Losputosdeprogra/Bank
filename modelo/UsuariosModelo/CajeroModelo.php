@@ -185,7 +185,7 @@ class CajeroModelo  extends UsuarioModelo{
      
      public function registrartransaccion($transaccion){
         $conexion=ConectarBD::conectar("bd_finanzas");
-        $sql="INSERT INTO `transacciones`( `fecha`, `hora`, `tipo`, `cuenta_origen`, `cuenta_destino`, `monto`, `id_caja`, `id_cajero`, `id_sucursal`) VALUES (?,?,?,?,?,?,?,?,?);";
+        $sql="INSERT INTO `transacciones`( `fecha`, `hora`, `tipo`, `cuenta_origen`, `cuenta_destino`, `monto`,`moneda` ,`id_caja`, `id_cajero`, `id_sucursal`) VALUES (?,?,?,?,?,?,?,?,?,?);";
         $stmt = $conexion->prepare($sql);
         
             $a0=$transaccion->fecha();
@@ -195,10 +195,11 @@ class CajeroModelo  extends UsuarioModelo{
                 $a3=$transaccion->cuenta_origen();
                 $a4=$transaccion->cuenta_destino();
                 $a5=$transaccion->monto();
+                $a9=$transaccion->moneda();
                 $a6=$transaccion->id_caja();
                 $a7=$transaccion->id_cajero();
                 $a8=$transaccion->id_sucursal();
-        $stmt->bind_param('sssiidiii',$a0,$a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8);
+        $stmt->bind_param('sssiidsiii',$a0,$a1,$a2,$a3,$a4,$a5,$a9,$a6,$a7,$a8);
           
         /////////////
         if ($stmt->execute()) {
@@ -227,7 +228,7 @@ class CajeroModelo  extends UsuarioModelo{
             $monto  =   $transaccion->monto();
             $monto  =   $this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
             
-            $transaccion->monto($monto);
+            
             
             if( $monto <= $origen->getMonto() ){
                 
@@ -255,7 +256,7 @@ class CajeroModelo  extends UsuarioModelo{
             $monto=$transaccion->monto();
             $monto=$this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
             
-            $transaccion->monto($monto);
+            
             
             if($monto>0){
                 
@@ -281,7 +282,7 @@ class CajeroModelo  extends UsuarioModelo{
             
             $monto  =   $transaccion->monto();
             $monto  =   $this->VerificarMoneda( $moneda,$origen->getMoneda(), $monto);
-            $transaccion->monto($monto);
+            
             $moneda=$origen->getMoneda();
             if($monto <= $origen->getMonto()){
                 

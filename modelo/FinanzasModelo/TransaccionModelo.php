@@ -12,6 +12,7 @@ class TransaccionModelo {
     private $id_caja;   //int
     private $id_cajero;     //int
     private $id_sucursal;   //int
+    private $moneda;
     
     ////////SETS AND GETS
     public function __construct(){
@@ -113,4 +114,13 @@ class TransaccionModelo {
             return $this->id_sucursal;
         }   
     }
+    public function moneda($x=""){
+        if( $x!="" ){
+            $this->moneda=$x;
+            
+        }else {
+            return $this->moneda;
+        }   
+    }
+    
 }

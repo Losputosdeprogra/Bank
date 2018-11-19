@@ -54,6 +54,7 @@ $transaccion->id_cajero($idcajero);
 $transaccion->id_sucursal($id_sucursal);
 $transaccion->monto($monto);
 $transaccion->tipo($tipo);
+$transaccion->moneda($moneda);
 
 
 $actor=new CajeroModelo();

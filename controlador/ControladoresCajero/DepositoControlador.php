@@ -47,6 +47,7 @@ $transaccion->tipo($tipo);
 $transaccion->id_caja($idcaja);
 $transaccion->id_cajero($idcajero);
 $transaccion->id_sucursal($id_sucursal);
+$transaccion->moneda($moneda);
 
 if($cajero->Deposito($transaccion, $moneda)){
     if($_SESSION['nit_ci'] != 0){
