@@ -21,7 +21,7 @@ if (isset($_POST['btn_Solicitar_extracto'])) {
     if($FechaInicio != ""){
     
         $Extracto = $Cliente->RealizarExtracto($FechaInicio,$FechaFinal,$id_cuenta);
-        MostrarExtracto($Extracto);
+        Mostrar::Extracto($Extracto);
         
     }else{
         echo "<br><br><br><br>";

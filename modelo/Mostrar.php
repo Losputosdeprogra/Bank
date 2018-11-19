@@ -1,9 +1,8 @@
 <?php
 
 class Mostrar {
-    private $color="#ABEBC6";
     public static function Cuentas($cuentas="") {
-    echo "<table width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='$color'>";
+    echo "<table style='font-family:Lucida Sans Typewriter' width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor=#A9D0F5>";
     echo "<caption><h1>Lista de tus cuentas</caption>";
     echo "<tr>";
     echo "<th>Id_cuenta</th>";
@@ -24,7 +23,7 @@ class Mostrar {
     }
     
     public static function  Extracto($Transacciones="") {
-    echo "<table width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='$color'>";
+    echo "<table  style='font-family:Lucida Sans Typewriter' width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor=#A9D0F5>";
     echo "<caption><h1>Lista de transacciones</caption>";
     echo "<tr>";
     echo "<th>Id Tansaccion</th>";
@@ -54,7 +53,7 @@ class Mostrar {
     
     public static function Reporte($reporte){
     
-        echo "<table width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='$color'>";
+        echo "<table style='font-family:Lucida Sans Typewriter'  width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor=#A9D0F5>";
         echo "<caption><h1>Reporte</caption>";
         echo "<tr>";
         echo "<th>Id_Transaccion</th>";
@@ -94,7 +93,7 @@ class Mostrar {
         echo " </table>";
     }
     public function Cajas($cajas) {
-        echo "<table width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='$color'>";
+        echo "<table style='font-family:Lucida Sans Typewriter'  width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='#D5DBDB'>";
         echo "<caption><h1>Reporte</caption>";
         echo "<tr>";
         echo "<th>Id_caja</th>";
@@ -113,7 +112,7 @@ class Mostrar {
         echo " </table>";
     }
     public function Sucursales($Sucursales,$NombreDepartamento) {
-        echo "<table width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='$color'>";
+        echo "<table  style='font-family:Lucida Sans Typewriter' width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='#D5DBDB'>";
         echo "<caption><h1>$NombreDepartamento</caption>";
         echo "<tr>";
         echo "<th>Id Sucursal</th>";
@@ -130,7 +129,7 @@ class Mostrar {
         echo " </table>";
     }
     public function Cajeros($Cajeros,$titulo) {
-        echo "<table width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='$color'>";
+        echo "<table  style='font-family:Lucida Sans Typewriter' width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='#D5DBDB'>";
         echo "<caption><h1>$titulo</caption>";
         echo "<tr>";
         echo "<th>Id cajero</th>";
@@ -152,7 +151,7 @@ class Mostrar {
         echo " </table>";
     }
     public function CajerosPorSucursal($Cajeros,$Sucursal) {
-        echo "<table width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='$color'>";
+        echo "<table  style='font-family:Lucida Sans Typewriter' width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='#D5DBDB'>";
         echo "<caption><h1>Sucursal $Sucursal</caption>";
         echo "<tr>";
         echo "<th>Id cajero</th>";
@@ -174,7 +173,7 @@ class Mostrar {
         echo " </table>";
     }
     public function CajasPorSucursal($Cajas,$Sucursal) {
-        echo "<table width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='$color'>";
+        echo "<table  style='font-family:Lucida Sans Typewriter' width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='#D5DBDB'>";
         echo "<caption><h1>Sucursal $Sucursal</caption>";
         echo "<tr>";
         echo "<th>Id caja</th>";
@@ -191,7 +190,7 @@ class Mostrar {
     }
     
     public function SucursalesPorDepartamento($Sucrusales,$Departamento) {
-        echo "<table width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='$color'>";
+        echo "<table  style='font-family:Lucida Sans Typewriter' width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor='#D5DBDB'>";
         echo "<caption><h1>Sucursal $Departamento</caption>";
         echo "<tr>";
         echo "<th>Id Sucursal</th>";
