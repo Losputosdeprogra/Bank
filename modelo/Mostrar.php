@@ -23,10 +23,22 @@ class Mostrar {
     }
     
     public static function  Extracto($Transacciones="") {
+        $credito=0;
+        $debito=0;
+         $cuenta=$_SESSION['id_cuenta'];
+            $sql1 = "SELECT monto,moneda from cuentas WHERE id_cuenta =$cuenta ";
+            $aux = ConectarBD::send("bd_finanzas", $sql1)->fetch_row();
+            if ($aux[1]=="Bolivianos"){
+                $moneda="Bolivianos";
+                $sigla=" Bs";
+            }else{
+                $moneda="Dolares";
+                $sigla=" USD";
+            }
     echo "<table  style='font-family:Lucida Sans Typewriter' width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor=#A9D0F5>";
     echo "<caption><h1>Lista de transacciones</caption>";
-    echo "<caption>".$_SESSION['nombre']."</caption>";
-    echo "<caption>    Cuenta: ".$_SESSION['id_cuenta']."</caption>";
+    echo "<caption> Cliente: ".$_SESSION['nombre']."</caption>";
+    echo "<caption>    Cuenta: ".$_SESSION['id_cuenta']."  Moneda:".$moneda."</caption>";
     echo "<tr>";
     echo "<th>Id Tansaccion</th>";
     echo "<th>Fecha</th>";
@@ -36,16 +48,9 @@ class Mostrar {
     echo "<th>Cuenta destino</th>";
     echo "<th>Credito</th>";  /////Aument, Recibe
     echo "<th>Debito</th>";   ////Disminuye, Manda
-    echo "<th>Moneda</th>";
     echo "</tr>";
     
-            $cuenta=$_SESSION['id_cuenta'];
-            $sql1 = "SELECT monto,moneda from cuentas WHERE id_cuenta =$cuenta ";
-            $aux = ConectarBD::send("bd_finanzas", $sql1)->fetch_row();
-            if ($aux[1]=="Bolivianos"){
-                $moneda="Bolivianos";
-            }else $moneda="Dolares";
-            
+           
             
     while ($fila = $Transacciones->fetch_row()) {
         echo "<tr>";
@@ -71,31 +76,42 @@ class Mostrar {
         
         ////validacion de debito o credito
         if($fila[4]==$_SESSION['id_cuenta']){
-            echo "<td> <center>". round($fila[6],2)."</td>";
+            echo "<td> <center>". round($fila[6],2).$sigla."</td>";
+            $credito=$credito+round($fila[6],2);
             echo "<td> <center>---------------</td>";
         }
         if($fila[5]==$_SESSION['id_cuenta']){
-            
+            $debito=$debito+round($fila[6],2);
             echo "<td> <center>---------------</td>";
-            echo "<td> <center>". round($fila[6],2)."</td>";
+            echo "<td> <center>". round($fila[6],2).$sigla."</td>";
         }
-        echo "<td> <center>".$moneda."</td>";
         echo "</tr>";
     }
     
         echo "<tr>";
-        echo "<td> <center>---------</center></td>"; 
-        echo "<td> <center>---------</td>";
-        echo "<td> <center>---------</td>";
-        echo "<td> <center>---------</td>";
-        echo "<td> <center>---------</td>";
-        echo "<td> <center>---------</td>";
-        echo "<td> <center>SALDO</td>";
-        echo "<td> <center>".$aux[0]."</td>";
-        echo "<td> <center>".$aux[1]."</td>";
+        echo "<td> <center></center></td>"; 
+        echo "<td> <center></center></td>"; 
+        echo "<td> <center></center></td>"; 
+        echo "<td> <center></center></td>"; 
+        echo "<td> <center></center></td>"; 
+        echo "<td> <center><h4>Total:</td>";
+        echo "<td> <center>".$credito.$sigla."</td>";
+        echo "<td> <center>".$debito.$sigla."</td>";
         echo "</tr>";
     
-    
+        ////////Saldo Fila
+        
+        echo "<tr>";
+        echo "<td> <center></center></td>"; 
+        echo "<td> <center></center></td>"; 
+        echo "<td> <center></center></td>"; 
+        echo "<td> <center></center></td>"; 
+        echo "<td> <center></center></td>"; 
+        echo "<td> <center></center></td>"; 
+        echo "<td> <center><h4>SALDO</td>";
+        echo "<td> <center><h4>".$aux[0].$sigla."</td>";
+        echo "</tr>";
+        
     echo " </table>";
     }
     
