@@ -19,7 +19,7 @@ if (isset($_POST['btn_Solicitar_extracto'])) {
     }
     
     if($FechaInicio != ""){
-    
+        $_SESSION['id_cuenta']=$id_cuenta;
         $Extracto = $Cliente->RealizarExtracto($FechaInicio,$FechaFinal,$id_cuenta);
         Mostrar::Extracto($Extracto);
         
@@ -30,7 +30,7 @@ if (isset($_POST['btn_Solicitar_extracto'])) {
 }
 
 if (isset($_POST['btn_Solicitar_extracto_general'])){
-    
+    $_SESSION['id_cuenta']=$id_cuenta;
     $Extracto = $Cliente->RealizarExtractoGeneral($id_cuenta);
     Mostrar::Extracto($Extracto);
 }
