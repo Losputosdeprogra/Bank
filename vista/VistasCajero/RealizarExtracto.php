@@ -36,10 +36,7 @@
 
                 <center><h1>Realizar un extracto</h1></center>
                 
-                <?php 
-                    print "<h2><br><br><br><p>Bienvenido $_SESSION[nombre]</h2>";
-                ?>
-
+                
                 <form method="POST" action="../../controlador/ControladoresCliente/ClienteRealizarExtracto.php" >
 
                     <div class="form-group">

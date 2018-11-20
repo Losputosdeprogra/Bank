@@ -7,7 +7,7 @@
 
     $Cliente = new ClienteModelo;
     $nombre = $_SESSION["nombre"];
-
+    $_SESSION["nombre"]=$nombre;
     $sql = "SELECT id_cliente from clientes WHERE nombre = '$nombre'";
     $Cliente->setIdCliente(ConectarBD::send("bd_usuario", $sql)->fetch_row()[0]);
     

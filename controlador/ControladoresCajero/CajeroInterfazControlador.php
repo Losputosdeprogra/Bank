@@ -14,6 +14,8 @@ $Cliente = new ClienteModelo();
     if (isset($_POST['btn_Realizar_extracto'])) {
         if($nit ){
             $_SESSION["id_cliente"] = $Cliente->ObtenerIDconNit($nit);
+            $sql1 = "SELECT nombre from clientes WHERE nit_ci ='$nit' ";
+            $_SESSION["nombre"]= ConectarBD::send("bd_usuario", $sql1)->fetch_row()[0];
             require_once constant("direccion").'RealizarExtracto.php';
         }else{
         echo "<br><br><br><br><center> Debe introducir el nit del cliente</center>";
