@@ -56,8 +56,8 @@ if($cajero->Deposito($transaccion, $moneda)){
         $cliente->setIdCliente($_SESSION["id_cliente"]);
         Mostrar::Cuentas($cliente->ObtenerCuentas());
     }else{
-        $sql="SELECT id_trans, fecha, hora, tipo, cuenta_origen, cuenta_destino, monto FROM transacciones ORDER BY id_trans DESC LIMIT 1";
-        Mostrar::Extracto(ConectarBD::send('bd_finanzas', $sql));
+        $sql="SELECT id_trans, fecha, hora, tipo, cuenta_origen, cuenta_destino, monto,moneda FROM transacciones ORDER BY id_trans DESC LIMIT 1";
+        Mostrar::DepositoExterno(ConectarBD::send('bd_finanzas', $sql));
     }
 }else {
     echo"<center><br><br><br>No se pudo realizar</center>";

@@ -114,7 +114,38 @@ class Mostrar {
         
     echo " </table>";
     }
+    //////////////////ESTA FUNCION ES PARA DEPOSITO EXTERNO
+       public static function  DepositoExterno($Transacciones="") {
+    echo "<table  style='font-family:Lucida Sans Typewriter' width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor=#A9D0F5>";
+    echo "<caption><h1>Lista de transacciones</caption>";
+    echo "<tr>";
+    echo "<th>Id Tansaccion</th>";
+    echo "<th>Fecha</th>";
+    echo "<th>Hora</th>";
+    echo "<th>Tipo</th>";
+    echo "<th>Cuenta origen</th>";
+    echo "<th>Cuenta destino</th>";
+    echo "<th>Monto</th>";
+    echo "<th>Moneda</th>";
+    echo "</tr>";
+    while ($fila = $Transacciones->fetch_row()) {
+        echo "<tr>";
+        echo "<td> <center>".$fila[0]."</center></td>"; 
+        echo "<td> <center>".$fila[1]."</td>";
+        echo "<td> <center>".$fila[2]."</td>";
+        echo "<td> <center>".$fila[3]."</td>";
+        echo "<td> <center>".$fila[4]."</td>";
+        echo "<td> <center>".$fila[5]."</td>";
+        echo "<td> <center>".$fila[6]."</td>";
+        echo "<td> <center>".$fila[7]."</td>";
+        echo "</tr>";
+    }
+    echo " </table>";
+    }
     
+    
+    
+    //////////////////////////////////////////
     
     public static function Reporte($reporte){
     
