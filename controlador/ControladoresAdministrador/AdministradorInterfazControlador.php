@@ -37,6 +37,12 @@ if(isset($_POST['btn_Reporte'])){
     require_once __DIR__.'/../../vista/VistasAdministrador/Reporte.php';
 }
 
+if(isset($_POST['btn_Eliminar_Cuenta'])){
+    
+    require_once __DIR__.'/../../vista/VistasAdministrador/Eliminar_Cuenta.php';
+}
+
+
 if(isset($_POST['btn_Realizar_Lista'])){
 
     if($TipoDeLista == "Cajeros"){
