@@ -36,6 +36,10 @@
                             <input type="submit" value="Crear sucursal" class="btn btn-primary" name="btn_Crear_Sucursal">
                             <input type="submit" value="Crear caja" class="btn btn-success" name="btn_Crear_Caja"></br><br>
                         </center>
+                        <center>
+                        <input type="submit" value="Eliminar Cuenta" class="btn btn-danger" name="btn_Eliminar_Cuenta">
+                        <input type="submit" value="Modificar Cliente" class="btn btn-info" name="btn_Modificar_Cliente"></br>
+                        </center>
                     </fieldset>
                     <fieldset>
                         <legend>Administrar personal:</legend>

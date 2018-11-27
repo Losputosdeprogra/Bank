@@ -1,7 +1,8 @@
 <?php
 
 require_once __DIR__ . '/UsuarioModelo.php';
-
+require_once __DIR__ . '/ClienteModelo.php';
+require_once __DIR__.'/../FinanzasModelo/CuentaModelo.php';
 class AdministradorModelo extends UsuarioModelo{
  
     private $TablaCorrespondiente = "administradores";
@@ -84,6 +85,34 @@ public function crear_sucursal($nombre,$id_dpto)
         $sql = "SELECT id_cajero,nombre,telefono,email,id_caja FROM cajeros  WHERE id_caja = 0 ";
         return ConectarBD::send("bd_usuario", $sql);
     }
-}    
+
+    public function EliminarCuenta($cuenta,$cliente)
+    {
+        if($cuenta->getId_cliente()==$cliente->getIdCliente()){
+            $id=$cuenta->getId_cliente();
+            $sql = "SELECT nombre,nit_ci FROM clientes  WHERE id_cliente=$id; ";
+            $id= ConectarBD::send("bd_usuario", $sql)->fetch_row();
+            
+            if($id[0]==$cliente->getNombre() and $id[1]==$cliente->getNit() and $cuenta->getMonto()==0){
+             $conexion=ConectarBD::conectar("bd_finanzas");
+             $sql="DELETE From cuentas WHERE id_cuenta=? AND id_cliente=?; ";
+             $stmt = $conexion->prepare($sql);
+             $a0=$cuenta->id_cuenta();
+             $a1=$cliente->getIdCliente();
+             $stmt->bind_param('ii',$a0,$a1 );
+             
+             if ($stmt->execute()) {
+                $conexion->close();
+                return(true);
+                } else {
+                $conexion->close();
+                return(false);
+                }
+            }
+        }
+    }
+    
+    
+    }    
 
 
