@@ -30,6 +30,17 @@ class ClienteModelo extends UsuarioModelo{
         return ConectarBD::send("bd_usuario", $sql)->fetch_row()[0];
     }
     
+    public function VerificarCi_Nit($nit){
+        if($nit > 0){
+            
+            $sql = "SELECT if(1 in (SELECT nit_ci FROM clientes), TRUE , FALSE) FROM clientes WHERE nit_ci = 1";
+            return ConectarBD::send('bd_usuario', $sql)->fetch_row();
+           
+        }else{
+            return FALSE;
+        }
+    }
+
     public function RealizarExtracto($fi,$ff,$id) {
         return parent::Extracto($fi,$ff,$id);
     }

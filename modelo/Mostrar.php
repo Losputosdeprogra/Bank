@@ -25,7 +25,7 @@ class Mostrar {
     public static function  Extracto($Transacciones="") {
         $credito=0;
         $debito=0;
-         $cuenta=$_SESSION['id_cuenta'];
+        $cuenta=$_SESSION['id_cuenta'];
             $sql1 = "SELECT monto,moneda from cuentas WHERE id_cuenta =$cuenta ";
             $aux = ConectarBD::send("bd_finanzas", $sql1)->fetch_row();
             if ($aux[1]=="Bolivianos"){
@@ -114,6 +114,7 @@ class Mostrar {
         
     echo " </table>";
     }
+    
     //////////////////ESTA FUNCION ES PARA DEPOSITO EXTERNO
        public static function  DepositoExterno($Transacciones="") {
     echo "<table  style='font-family:Lucida Sans Typewriter' width='75%' border='3' align='center' cellspacing='5' bordercolor='#000000' bgcolor=#A9D0F5>";

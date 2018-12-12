@@ -24,7 +24,7 @@ if (isset($_POST['btn_ingresar'])) {
         
         require_once  __DIR__ . '/../../vista/VistasCliente/ClienteInterfaz.php';
     }else{
-        require_once  __DIR__ . '/../../vista/VistasCliente/Clientelogin.php';      //Vuelve a mostrar la pagina para loguearce
+        //require_once  __DIR__ . '/../../vista/VistasCliente/Clientelogin.php';      //Vuelve a mostrar la pagina para loguearce
         echo "<br><center>Usuario o contraseña incorrecto. Intenta de nuevo.";
     }
 }

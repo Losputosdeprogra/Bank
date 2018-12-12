@@ -14,15 +14,22 @@ $Cliente->setNombre($_SESSION["nombre"]);      //Se recibe el nombre del usuario
 
 if (isset($_POST['btn_Solicitar_extracto'])) {
     
-    if($FechaFinal == ""){
-        $FechaFinal = $FechaInicio;
-    }
+    
     
     if($FechaInicio != ""){
-        $_SESSION['id_cuenta']=$id_cuenta;
-        $Extracto = $Cliente->RealizarExtracto($FechaInicio,$FechaFinal,$id_cuenta);
-        Mostrar::Extracto($Extracto);
         
+        if($FechaFinal == ""){
+            
+            $FechaFinal = $FechaInicio;
+        }
+        
+        if($FechaFinal >= $FechaInicio){
+            $_SESSION['id_cuenta']=$id_cuenta;
+            $Extracto = $Cliente->RealizarExtracto($FechaInicio,$FechaFinal,$id_cuenta);
+            Mostrar::Extracto($Extracto);
+        }else{
+           echo "La fecha final debe ser mayor a la inicial";
+        }
     }else{
         echo "<br><br><br><br>";
         echo "<center>Dede introducir al menos la fecha de inicio</center>";
@@ -32,5 +39,6 @@ if (isset($_POST['btn_Solicitar_extracto'])) {
 if (isset($_POST['btn_Solicitar_extracto_general'])){
     $_SESSION['id_cuenta']=$id_cuenta;
     $Extracto = $Cliente->RealizarExtractoGeneral($id_cuenta);
+    
     Mostrar::Extracto($Extracto);
 }

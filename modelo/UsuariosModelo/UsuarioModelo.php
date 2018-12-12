@@ -65,8 +65,16 @@ class UsuarioModelo {
     
     protected function Extracto($fi,$ff,$idCuenta) {
         
+      /*  if($fi!=$ff)*/{
         $sql = "SELECT id_trans,fecha,hora,tipo,cuenta_origen,cuenta_destino,monto,moneda FROM transacciones "
                 . "WHERE (cuenta_origen = $idCuenta OR cuenta_destino = $idCuenta) AND (fecha >='$fi' AND fecha<='$ff');";
         return ConectarBD::send("bd_finanzas",$sql);
+        }
+        /*
+        else{
+            $sql = "SELECT id_trans,fecha,hora,tipo,cuenta_origen,cuenta_destino,monto,moneda FROM transacciones "
+                . "WHERE (cuenta_origen = $idCuenta OR cuenta_destino = $idCuenta) AND (fecha >='$fi' );";
+        return ConectarBD::send("bd_finanzas",$sql);
+        }*/
     }
 }

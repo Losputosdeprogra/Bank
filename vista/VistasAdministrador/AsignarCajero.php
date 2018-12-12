@@ -11,13 +11,13 @@
     
     
     $listadecajas= "";
-    $sql = "SELECT id_caja, if( cajas.id_caja IN(SELECT cajeros.id_caja FROM bd_usuario.cajeros) ,'Ocupado','Libre') FROM cajas";
+    $sql = "SELECT c.id_caja,s.nombre, if( c.id_caja IN(SELECT cajeros.id_caja FROM bd_usuario.cajeros) ,'Ocupado','Libre') AS 'estado' FROM cajas c, sucursales s WHERE c.id_sucursal = s.id_sucursal ORDER BY s.nombre";
     $rows = ConectarBD::send("bd_banco", $sql);
  
    
     while($filas = $rows->fetch_row()) {
 
-        $listadecajas .= " <option value='".$filas[0]."'>".$filas[0]." ($filas[1]) "."</option>";
+        $listadecajas .= " <option value='$filas[0]'>$filas[0] $filas[1] ($filas[2]) "."</option>";
     }
     $listadecajas .= "<option value = '0'>0 (Desasignar cajero)</option>";
     
@@ -60,7 +60,7 @@
 
                     <div class="form-group">
                         <label for="combobox">Id_caja: </label>
-                        <select  name="id_caja" class="form-control" id="id_caja">
+                        <select  name="id_caja" class="form-control" id="id_caja" >
                                <?php 
                                 echo $listadecajas;
                                ?>

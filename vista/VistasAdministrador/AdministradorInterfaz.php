@@ -38,7 +38,7 @@
                         </center>
                         <center>
                         <input type="submit" value="Eliminar Cuenta" class="btn btn-danger" name="btn_Eliminar_Cuenta">
-                        <input type="submit" value="Modificar Cliente" class="btn btn-info" name="btn_Modificar_Cliente"></br>
+                     
                         </center>
                     </fieldset>
                     <fieldset>

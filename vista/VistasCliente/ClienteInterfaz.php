@@ -34,7 +34,7 @@
 
                         
                     <fieldset>
-                        <legend>¿Qué deceas hacer?</legend>
+                        <legend>¿Qué deseas hacer?</legend>
                         <center>
 
                           <input type="submit" value="Solicitar extracto" class="btn btn-primary" name="btn_Solicitar_extracto">

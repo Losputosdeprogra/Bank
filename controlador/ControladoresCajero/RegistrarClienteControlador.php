@@ -20,7 +20,8 @@
     $Cliente->setNit($nit);
     
     if($nombre != "" && $contrasena != "" && $nit!= 0){
-
+        
+        
         if($Cajero->RegistrarNuevoCliente($Cliente,$TipoCuenta,$moneda)){
             $cuentas = $Cliente->ObtenerCuentas();
             Mostrar::Cuentas($cuentas);
@@ -28,6 +29,7 @@
         }else{
             echo "<br><br><br><br><center> Algo salio mal";
         }
+        
     }else{
         echo "<br><br><br><br><center> Como minimo debe ingresar un nombre,contaseña y C.I para el nuevo cliente";
     }

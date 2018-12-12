@@ -48,8 +48,10 @@
                             
                         <legend>Operaciones generales</legend>
                         <center>
-                            <input type="submit" value="Crear cuenta nueva" class="btn btn-danger" name="btn_Crear_cuenta"></br></br>
+                            <input type="submit" value="Crear cuenta nueva" class="btn btn-primary" name="btn_Crear_cuenta"></br></br>
+                            <input type="submit" value="Eliminar cuenta" class="btn btn-danger" name="btn_Elimiar_cuenta"></br></br>
                             <input type="submit" value="Registrar nuevo cliente" class="btn btn-info" name="btn_Registrar_cliente">
+                            <input type="submit" value="encontrar cliente mas trans" class="btn btn-info" name="btn_encontrar">
                         </center>
                         
                         

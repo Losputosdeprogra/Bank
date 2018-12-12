@@ -36,7 +36,7 @@
                 
                 <div class="form-group">
                     <label for="contrasena">Contraseña:* </label>
-                    <input type="text" name="contrasena" class="form-control" id="contrasena">
+                    <input type="text" name="contrasena" class="form-control" id="contrasena" >
                 </div>        
                 
                 <div class="form-group">
@@ -51,7 +51,7 @@
                 
                 <div class="form-group">
                     <label for="email">Correo electronico: </label>
-                    <input type="text" name="email" class="form-control" id="email">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="ejemplo@gmail.com" >
                 </div> 
                 
                 <div class="form-group">

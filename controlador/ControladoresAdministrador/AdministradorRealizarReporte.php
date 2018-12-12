@@ -52,33 +52,36 @@ if(isset($_POST['btn_Realizar_Reporte']))
     {
         $FechaFinal=$FechaInicio;
     }
-    if($tipo=='Banco')
-    {
-       
-       $reporte=$obj->ObtenerReporteBancoFecha($FechaInicio,$FechaFinal);
-       Mostrar::Reporte($reporte);
-      
+    if($FechaFinal >= $FechaInicio){
+        if($tipo=='Banco')
+        {
+
+           $reporte=$obj->ObtenerReporteBancoFecha($FechaInicio,$FechaFinal);
+           Mostrar::Reporte($reporte);
+
+        }
+
+        if($tipo=='Sucursal')
+        {
+
+            $reporte=$obj->ObtenerReporteGeneralFecha($id,'id_sucursal',$FechaInicio,$FechaFinal);
+           Mostrar::Reporte($reporte);
+        }
+
+        if($tipo=='Cajero')
+        {
+            $reporte=$obj->ObtenerReporteGeneralFecha($id,'id_cajero',$FechaInicio,$FechaFinal);
+           Mostrar::Reporte($reporte);        
+        }
+
+        if($tipo=='Caja')
+        {
+           $reporte=$obj->ObtenerReporteGeneralFecha($id,'id_caja');
+           Mostrar::Reporte($reporte);     
+        }    
+    } else {
+        echo "La fecha final debe ser mayor a la fecha de inicio";
     }
-    
-    if($tipo=='Sucursal')
-    {
- 
-        $reporte=$obj->ObtenerReporteGeneralFecha($id,'id_sucursal',$FechaInicio,$FechaFinal);
-       Mostrar::Reporte($reporte);
-    }
-                
-    if($tipo=='Cajero')
-    {
-        $reporte=$obj->ObtenerReporteGeneralFecha($id,'id_cajero',$FechaInicio,$FechaFinal);
-       Mostrar::Reporte($reporte);        
-    }
-                        
-    if($tipo=='Caja')
-    {
-       $reporte=$obj->ObtenerReporteGeneralFecha($id,'id_caja');
-       Mostrar::Reporte($reporte);     
-    }    
-    
  }
     
 }
